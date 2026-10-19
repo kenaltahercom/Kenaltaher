@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" rx="14" fill="#131018"/>
+  <rect x="2" y="2" width="596" height="396" rx="12" stroke="#2b2336" stroke-width="2"/>
+  <circle cx="300" cy="180" r="180" fill="#a855f7" opacity="0.08" filter="blur(40px)"/>
+  
+  <rect x="25" y="25" width="550" height="350" rx="8" fill="none" stroke="#382949" stroke-width="1.5" stroke-dasharray="6 4"/>
+  
+  <circle cx="300" cy="100" r="36" fill="#1e1529" stroke="#c084fc" stroke-width="2"/>
+  <rect x="288" y="88" width="24" height="24" rx="4" fill="none" stroke="#e879f9" stroke-width="2"/>
+  
+  <text x="300" y="170" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#f8fafc" text-anchor="middle" letter-spacing="1">STANDARISASI UI/UX &amp; AKSESIBILITAS</text>
+  <text x="300" y="200" font-family="system-ui, sans-serif" font-size="13" fill="#c084fc" text-anchor="middle">Responsive Design &amp; Web Performance Standards</text>
+  <line x1="200" y1="225" x2="400" y2="225" stroke="#4a3363" stroke-width="1"/>
+  
+  <text x="300" y="255" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Standarisasi kelayakan pengalaman pengguna, fluid typography,</text>
+  <text x="300" y="275" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">dan integrasi reduced-motion untuk aksesibilitas digital inklusif</text>
+  
+  <g transform="translate(100, 310)">
+    <line x1="0" y1="20" x2="120" y2="20" stroke="#475569" stroke-width="1"/>
+    <text x="60" y="35" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Spesialis Frontend</text>
+  </g>
+  <g transform="translate(380, 310)">
+    <line x1="0" y1="20" x2="120" y2="20" stroke="#475569" stroke-width="1"/>
+    <text x="60" y="35" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Standar 2025</text>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" rx="16" fill="#0b0d14"/>
+  <rect x="1" y="1" width="798" height="498" rx="15" stroke="#1f2333" stroke-width="2"/>
+  
+  <circle cx="450" cy="220" r="260" fill="#06b6d4" opacity="0.1" filter="blur(60px)"/>
+
+  <g transform="translate(60, 50)">
+    <rect width="680" height="400" rx="12" fill="#111522" stroke="#252c40" stroke-width="1.5"/>
+    <rect width="680" height="40" rx="12" fill="#181e2e"/>
+    <path d="M 0 28 L 680 28" stroke="#1f2333" stroke-width="1"/>
+    
+    <circle cx="24" cy="20" r="5" fill="#ef4444" opacity="0.8"/>
+    <circle cx="40" cy="20" r="5" fill="#f59e0b" opacity="0.8"/>
+    <circle cx="56" cy="20" r="5" fill="#10b981" opacity="0.8"/>
+    <rect x="80" y="12" width="240" height="16" rx="8" fill="#0b0d14"/>
+    <text x="120" y="24" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">business-presence.id</text>
+
+    <!-- Layout mock -->
+    <rect x="40" y="70" width="300" height="28" rx="6" fill="#1e293b"/>
+    <text x="50" y="88" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#38bdf8">Solusi Digital Berkelanjutan</text>
+    
+    <rect x="40" y="115" width="240" height="8" rx="4" fill="#334155"/>
+    <rect x="40" y="130" width="200" height="8" rx="4" fill="#334155"/>
+    <rect x="40" y="160" width="130" height="36" rx="6" fill="#0ea5e9"/>
+    <text x="60" y="183" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#ffffff">Hubungi Admin</text>
+
+    <!-- Stats mock -->
+    <g transform="translate(380, 70)">
+      <rect width="250" height="130" rx="8" fill="#192033" stroke="#29354d"/>
+      <text x="25" y="40" font-family="system-ui, sans-serif" font-size="28" font-weight="900" fill="#38bdf8">&lt; 1s</text>
+      <text x="25" y="65" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">Waktu Muat Mobile</text>
+      <path d="M 25 100 Q 80 75 140 90 T 225 70" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+    </g>
+
+    <!-- Grid items -->
+    <g transform="translate(40, 230)">
+      <rect width="180" height="120" rx="8" fill="#161c2d" stroke="#222b3d"/>
+      <circle cx="35" cy="40" r="16" fill="#0ea5e9" opacity="0.2"/>
+      <text x="65" y="44" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#f8fafc">Katalog Layanan</text>
+      <rect x="25" y="75" width="130" height="6" rx="3" fill="#334155"/>
+      <rect x="25" y="90" width="90" height="6" rx="3" fill="#334155"/>
+    </g>
+
+    <g transform="translate(240, 230)">
+      <rect width="180" height="120" rx="8" fill="#161c2d" stroke="#222b3d"/>
+      <circle cx="35" cy="40" r="16" fill="#10b981" opacity="0.2"/>
+      <text x="65" y="44" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#f8fafc">Booking WhatsApp</text>
+      <rect x="25" y="75" width="130" height="6" rx="3" fill="#334155"/>
+      <rect x="25" y="90" width="100" height="6" rx="3" fill="#334155"/>
+    </g>
+
+    <g transform="translate(440, 230)">
+      <rect width="190" height="120" rx="8" fill="#161c2d" stroke="#222b3d"/>
+      <circle cx="35" cy="40" r="16" fill="#f59e0b" opacity="0.2"/>
+      <text x="65" y="44" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#f8fafc">SEO Terstruktur</text>
+      <rect x="25" y="75" width="140" height="6" rx="3" fill="#334155"/>
+      <rect x="25" y="90" width="80" height="6" rx="3" fill="#334155"/>
+    </g>
+  </g>
+</svg>

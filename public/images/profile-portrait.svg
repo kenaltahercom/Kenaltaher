@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" fill="none">
+  <defs>
+    <radialGradient id="portraitGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#09090c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="frameGrad" x1="0" y1="0" x2="600" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e1e28"/>
+      <stop offset="100%" stop-color="#0e0e13"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="750" rx="24" fill="url(#frameGrad)"/>
+  <rect x="2" y="2" width="596" height="746" rx="22" stroke="#2b2b3a" stroke-width="2"/>
+  <rect width="600" height="750" fill="url(#portraitGlow)"/>
+
+  <!-- Geometric silhouette backdrop for Taher Daeng Matora -->
+  <circle cx="300" cy="290" r="140" fill="#15151f" stroke="#36364a" stroke-width="1.5"/>
+
+  <!-- Stylized Elegant Developer Silhouette -->
+  <!-- Head -->
+  <circle cx="300" cy="240" r="65" fill="#242533"/>
+  <!-- Hair / Glasses aesthetic -->
+  <path d="M 240 230 Q 300 170 360 230 Q 300 200 240 230 Z" fill="#12131a"/>
+  <!-- Glasses -->
+  <rect x="260" y="235" width="32" height="18" rx="4" fill="none" stroke="#818cf8" stroke-width="2.5"/>
+  <rect x="308" y="235" width="32" height="18" rx="4" fill="none" stroke="#818cf8" stroke-width="2.5"/>
+  <line x1="292" y1="244" x2="308" y2="244" stroke="#818cf8" stroke-width="2.5"/>
+
+  <!-- Shoulders & Torso -->
+  <path d="M 160 520 C 160 380 210 330 300 330 C 390 330 440 380 440 520 Z" fill="#181924" stroke="#2e2f42" stroke-width="1.5"/>
+  <!-- Inner shirt collar -->
+  <path d="M 270 330 L 300 390 L 330 330 Z" fill="#101016"/>
+
+  <!-- Laptop / Desk horizon line -->
+  <rect x="80" y="520" width="440" height="180" rx="12" fill="#111219" stroke="#272836"/>
+  
+  <!-- Glowing code screen reflection -->
+  <rect x="120" y="540" width="360" height="140" rx="8" fill="#0b0b10" stroke="#37384e"/>
+  <!-- Code lines -->
+  <line x1="150" y1="570" x2="280" y2="570" stroke="#6366f1" stroke-width="4" stroke-linecap="round"/>
+  <line x1="150" y1="595" x2="340" y2="595" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+  <line x1="180" y1="620" x2="400" y2="620" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="180" y1="645" x2="260" y2="645" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Badge in corner -->
+  <g transform="translate(40, 40)">
+    <rect width="180" height="38" rx="19" fill="#181926" stroke="#33344a"/>
+    <circle cx="20" cy="19" r="6" fill="#10b981"/>
+    <text x="36" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#f8fafc">TAHER D. MATORA</text>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" rx="14" fill="#10141a"/>
+  <rect x="2" y="2" width="596" height="396" rx="12" stroke="#222e38" stroke-width="2"/>
+  <circle cx="300" cy="180" r="180" fill="#10b981" opacity="0.08" filter="blur(40px)"/>
+  
+  <rect x="25" y="25" width="550" height="350" rx="8" fill="none" stroke="#283845" stroke-width="1.5" stroke-dasharray="6 4"/>
+  
+  <circle cx="300" cy="100" r="36" fill="#15211e" stroke="#10b981" stroke-width="2"/>
+  <circle cx="300" cy="100" r="14" fill="#34d399" opacity="0.8"/>
+  
+  <text x="300" y="170" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#f8fafc" text-anchor="middle" letter-spacing="1">DOKUMENTASI KONTRIBUSI</text>
+  <text x="300" y="200" font-family="system-ui, sans-serif" font-size="13" fill="#34d399" text-anchor="middle">Inisiatif Pengembangan Solusi Informasi Digital</text>
+  <line x1="200" y1="225" x2="400" y2="225" stroke="#253e36" stroke-width="1"/>
+  
+  <text x="300" y="255" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Apresiasi dedikasi dalam membangun portal komunikasi terbuka</text>
+  <text x="300" y="275" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">yang memberikan dampak langsung bagi kemudahan akses informasi</text>
+  
+  <g transform="translate(100, 310)">
+    <line x1="0" y1="20" x2="120" y2="20" stroke="#475569" stroke-width="1"/>
+    <text x="60" y="35" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Koordinator Program</text>
+  </g>
+  <g transform="translate(380, 310)">
+    <line x1="0" y1="20" x2="120" y2="20" stroke="#475569" stroke-width="1"/>
+    <text x="60" y="35" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Tahun 2024</text>
+  </g>
+</svg>
