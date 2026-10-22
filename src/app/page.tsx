@@ -9,7 +9,6 @@ import ExperienceSection from "@/components/sections/ExperienceSection";
 import AchievementsSection from "@/components/sections/AchievementsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import BackToTop from "@/components/ui/BackToTop";
-import IntroMascot from "@/components/mascot/IntroMascot";
 import AfterHeroBackground from "@/components/backgrounds/AfterHeroBackground";
 import { LanguageThemeProvider } from "@/context/LanguageThemeContext";
 import { projectsData } from "@/data/projects";
@@ -17,9 +16,6 @@ import { projectsData } from "@/data/projects";
 export default function HomePage() {
   return (
     <LanguageThemeProvider>
-      {/* Intro Mascot Overlay (Fullscreen with greeting & smooth transition) */}
-      <IntroMascot />
-
       <div
         className="min-h-screen flex flex-col transition-colors duration-300 selection:bg-indigo-600 selection:text-white"
         style={{ backgroundColor: "var(--background)", color: "var(--foreground)" }}
@@ -31,12 +27,12 @@ export default function HomePage() {
           {/* Hero Section dengan Foto Asli Transparan Taher dan Marquee di Belakangnya */}
           <HeroSection />
 
-          {/* After-Hero sections with Galaxy background (Dark Mode only) */}
+          {/* After-Hero sections with static ambient depth */}
           <div className="relative">
-            {/* Galaxy star-field canvas — Dark Mode only, z-index 0 behind content */}
+            {/* Static ambient background layer behind content */}
             <AfterHeroBackground />
 
-            {/* All sections below Hero — rendered above Galaxy (z-index: relative) */}
+            {/* All sections below Hero */}
             <div className="relative" style={{ zIndex: 1 }}>
               {/* Showcase Proyek Unggulan with Autoplay 3D Gallery */}
               <FeaturedSection projects={projectsData} />

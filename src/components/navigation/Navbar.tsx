@@ -5,8 +5,10 @@ import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
 import KenaltaherMascot from "@/components/mascot/KenaltaherMascot";
 import { useLanguageTheme } from "@/context/LanguageThemeContext";
-import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import { Menu, X, ArrowUpRight, Sun, Moon, Mail } from "lucide-react";
 import GooeyNav from "@/components/ui/GooeyNav";
+import { contactConfig } from "@/config/contact";
+import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/Icons";
 
 export default function Navbar() {
   const { lang, setLang, theme, toggleTheme, t } = useLanguageTheme();
@@ -84,14 +86,14 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3 sm:pt-5 transition-all duration-300">
       <nav
         aria-label="Navigasi Utama"
-        className={`w-full max-w-6xl rounded-2xl transition-all duration-300 px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between ${
+        className={`w-full max-w-6xl rounded-2xl transition-all duration-300 px-6 sm:px-8 py-3.5 sm:py-4 flex items-center justify-between ${
           scrolled
             ? "glass-panel shadow-2xl shadow-black/10 dark:shadow-black/70 border border-slate-300/80 dark:border-white/10"
             : "glass-panel shadow-lg shadow-black/5 dark:shadow-black/40 border border-slate-300/60 dark:border-white/10"
         }`}
       >
         {/* Brand / Logo di Sebelah Kiri */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3.5">
           <KenaltaherMascot
             initialPose="navbar"
             size="sm"
@@ -104,10 +106,10 @@ export default function Navbar() {
             className="flex flex-col text-foreground group focus-visible:outline-2 focus-visible:outline-indigo-500 rounded-lg"
             aria-label="Kembali ke Beranda Kenaltaher"
           >
-            <span className="font-extrabold tracking-wider text-sm sm:text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase">
+            <span className="font-extrabold tracking-wider text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase">
               {siteConfig.brandName}
             </span>
-            <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-tight hidden sm:block">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono tracking-tight hidden sm:block">
               {siteConfig.ownerName}
             </span>
           </Link>
@@ -124,7 +126,7 @@ export default function Navbar() {
               if (href) scrollToSection(href);
             }}
             theme={theme}
-            size="sm"
+            size="md"
             frame={false}
             gooeyness={0.45}
             wobble={0.4}
@@ -135,12 +137,12 @@ export default function Navbar() {
         </div>
 
         {/* Controls: Theme Toggle + Language (ID | EN) + Hire Me Button */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        <div className="hidden sm:flex items-center gap-3.5">
           {/* Theme Toggle (Dark / Light) */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="p-2 rounded-full glass-panel hover:bg-slate-200/60 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-300 dark:border-white/10 transition-colors focus:outline-none"
+            className="p-2.5 rounded-full glass-panel hover:bg-slate-200/60 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-300 dark:border-white/10 transition-colors focus:outline-none cursor-pointer"
             aria-label={`Ganti ke mode ${theme === "dark" ? "terang" : "gelap"}`}
             title={`Mode: ${theme}`}
           >
@@ -148,11 +150,11 @@ export default function Navbar() {
           </button>
 
           {/* Language Selector (ID | EN) Tepat di sebelah kontrol tema */}
-          <div className="flex items-center rounded-full glass-panel p-0.5 border border-slate-300 dark:border-white/10 text-xs font-mono">
+          <div className="flex items-center rounded-full glass-panel p-0.5 border border-slate-300 dark:border-white/10 text-xs sm:text-[13px] font-mono">
             <button
               type="button"
               onClick={() => setLang("id")}
-              className={`px-2.5 py-1 rounded-full font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 lang === "id"
                   ? "bg-indigo-600 text-white shadow-sm"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
@@ -165,7 +167,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setLang("en")}
-              className={`px-2.5 py-1 rounded-full font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
                 lang === "en"
                   ? "bg-indigo-600 text-white shadow-sm"
                   : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
@@ -183,10 +185,10 @@ export default function Navbar() {
               e.preventDefault();
               scrollToSection("/#contact");
             }}
-            className="group relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white dark:bg-white dark:text-black hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-md shadow-black/10 dark:shadow-white/10"
+            className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-900 text-white dark:bg-white dark:text-black hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-md shadow-black/10 dark:shadow-white/10"
           >
             <span>{t("nav.hireMe")}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -269,6 +271,58 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* Quick Official Social & Contact Icons */}
+          <div className="flex items-center justify-around py-2 border-t border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+            <a
+              href={contactConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-500 transition-colors"
+              aria-label="Hubungi Taher via WhatsApp"
+              title={`WhatsApp: ${contactConfig.whatsappDisplay}`}
+            >
+              <WhatsAppIcon className="w-4 h-4 text-emerald-500" />
+            </a>
+            <a
+              href={contactConfig.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+              aria-label="Profil GitHub Kenaltaher"
+              title="GitHub"
+            >
+              <GithubIcon className="w-4 h-4 text-slate-800 dark:text-slate-200" />
+            </a>
+            <a
+              href={contactConfig.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl hover:bg-sky-500/10 hover:text-sky-500 transition-colors"
+              aria-label="Profil LinkedIn Kenaltaher"
+              title="LinkedIn"
+            >
+              <LinkedinIcon className="w-4 h-4 text-sky-500" />
+            </a>
+            <a
+              href={contactConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl hover:bg-pink-500/10 hover:text-pink-500 transition-colors"
+              aria-label="Instagram Kenaltaher"
+              title="Instagram"
+            >
+              <InstagramIcon className="w-4 h-4 text-pink-500" />
+            </a>
+            <a
+              href={contactConfig.emailUrl}
+              className="p-2 rounded-xl hover:bg-indigo-500/10 hover:text-indigo-500 transition-colors"
+              aria-label="Kirim Email"
+              title={`Email: ${contactConfig.email}`}
+            >
+              <Mail className="w-4 h-4 text-indigo-500" />
+            </a>
+          </div>
+
           <a
             href="/#contact"
             onClick={(e) => {
@@ -276,7 +330,7 @@ export default function Navbar() {
               setMobileMenuOpen(false);
               scrollToSection("/#contact");
             }}
-            className="mt-2 text-center py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black font-bold text-sm transition-colors shadow-lg"
+            className="mt-1 text-center py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black font-bold text-sm transition-colors shadow-lg"
           >
             {t("nav.hireMe")}
           </a>

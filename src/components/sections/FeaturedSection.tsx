@@ -34,11 +34,11 @@ export default function FeaturedSection({ projects }: FeaturedSectionProps) {
               <span>{t("featured.tag")}</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white uppercase">
-              {t("featured.title")} <span className="text-outline">{t("featured.titleOutline")}</span>
+            <h2 className="section-headline-gallery">
+              {t("featured.title")} {t("featured.titleOutline")}
             </h2>
 
-            <p className="max-w-xl text-slate-700 dark:text-slate-300 font-medium text-sm sm:text-base mt-4">
+            <p className="max-w-xl section-desc-gallery mt-4">
               {t("featured.desc")}
             </p>
           </div>

@@ -1,4 +1,7 @@
 import { SiteSettings, ContactChannel, Profile } from "@/types";
+import { contactConfig } from "@/config/contact";
+
+export { contactConfig };
 
 export const siteConfig: SiteSettings = {
   brandName: "Kenaltaher",
@@ -62,42 +65,46 @@ export const profileData: Profile = {
   ],
 };
 
+// Centralized WhatsApp constants sourced directly from contactConfig
+export const KENALTAHER_WHATSAPP_NUMBER = contactConfig.whatsappNumber;
+export const KENALTAHER_WHATSAPP_DISPLAY = contactConfig.whatsappDisplay;
+
 export const contactChannels: ContactChannel[] = [
   {
     channel: "WhatsApp",
     label: "WhatsApp",
-    value: "+62 822-xxxx-xxxx",
-    url: "https://wa.me/6282200000000?text=Halo%20Taher,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20website",
+    value: contactConfig.whatsappDisplay,
+    url: contactConfig.whatsappUrl,
     enabled: true,
     isPrimary: true,
   },
   {
     channel: "Email",
     label: "Email",
-    value: "taherdaengmatora@gmail.com",
-    url: "mailto:taherdaengmatora@gmail.com?subject=Inquiry%20Proyek%20Website%20-%20Kenaltaher",
+    value: contactConfig.email,
+    url: contactConfig.emailUrl,
     enabled: true,
     isPrimary: true,
   },
   {
     channel: "GitHub",
     label: "GitHub",
-    value: "github.com/kenaltaher",
-    url: "https://github.com/kenaltaher",
+    value: "github.com/kenaltahercom",
+    url: contactConfig.githubUrl,
     enabled: true,
   },
   {
     channel: "LinkedIn",
     label: "LinkedIn",
-    value: "linkedin.com/in/taher-daeng-matora",
-    url: "https://linkedin.com/in/taher-daeng-matora",
+    value: "linkedin.com/in/kenaltaher",
+    url: contactConfig.linkedinUrl,
     enabled: true,
   },
   {
     channel: "Instagram",
     label: "Instagram",
     value: "@kenaltaher",
-    url: "https://instagram.com/kenaltaher",
+    url: contactConfig.instagramUrl,
     enabled: true,
   },
 ];

@@ -12,7 +12,7 @@ interface DepthCarouselShowcaseProps {
 }
 
 export default function DepthCarouselShowcase({ projects }: DepthCarouselShowcaseProps) {
-  const { theme, t } = useLanguageTheme();
+  const { lang, theme, t } = useLanguageTheme();
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Dynamic card dimensions for optimal responsiveness
@@ -148,7 +148,7 @@ export default function DepthCarouselShowcase({ projects }: DepthCarouselShowcas
           {/* Technology Badges */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 mr-2">
-              Teknologi:
+              {lang === "en" ? "Technologies:" : "Teknologi:"}
             </span>
             {activeProject.technologies.map((tech) => (
               <span
@@ -162,7 +162,7 @@ export default function DepthCarouselShowcase({ projects }: DepthCarouselShowcas
         </div>
       )}
 
-      {/* Button to Archive (PRD 2.5: Pertahankan tombol 'Lihat Seluruh Karya' ke /work) */}
+      {/* Button to Archive */}
       <div className="mt-10 text-center">
         <Link
           href="/work"
@@ -170,7 +170,7 @@ export default function DepthCarouselShowcase({ projects }: DepthCarouselShowcas
         >
           <FolderKanban className="w-4 h-4 text-indigo-500" />
           <span>
-            {t("featured.viewAllArchive")} ({total}+ Proyek)
+            {t("featured.viewAllArchive")} ({total}+ {lang === "en" ? "Projects" : "Proyek"})
           </span>
           <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>

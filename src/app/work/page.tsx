@@ -53,11 +53,11 @@ export default function WorkArchivePage() {
                 <span>ARSIP PROYEK LENGKAP</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 dark:text-white uppercase mb-4">
-                Semua Karya &amp; <span className="text-outline">Eksplorasi</span>
+              <h1 className="section-headline-gallery mb-4">
+                Semua Karya &amp; Eksplorasi
               </h1>
 
-              <p className="max-w-xl text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+              <p className="max-w-xl section-desc-gallery">
                 Daftar komprehensif karya rekayasa web, implementasi antarmuka, dan solusi digital yang dikembangkan oleh Taher Daeng Matora.
               </p>
             </div>

@@ -1,0 +1,196 @@
+/* PulseCoffee Styles — Compact Pill with Smooth Hover-Expand */
+
+.pulse-coffee-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: var(--font-jetbrains-mono, monospace);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  text-decoration: none;
+  
+  /* Theme-aware pill backgrounds and borders */
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #78350f;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s ease,
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease;
+}
+
+:root.dark .pulse-coffee-btn,
+.dark .pulse-coffee-btn {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #fef3c7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.pulse-coffee-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.55);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+}
+
+:root.dark .pulse-coffee-btn:hover,
+.dark .pulse-coffee-btn:hover {
+  background: rgba(245, 158, 11, 0.24);
+  border-color: rgba(251, 191, 36, 0.55);
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
+}
+
+.pulse-coffee-btn:active {
+  transform: translateY(0.5px) scale(0.98);
+}
+
+.pulse-coffee-btn:focus-visible {
+  outline: 2px solid #d97706;
+  outline-offset: 2px;
+}
+
+/* Sizing variants */
+.pulse-coffee-sm {
+  height: 32px;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  gap: 0.35rem;
+}
+
+.pulse-coffee-md {
+  height: 38px;
+  padding: 0 0.65rem;
+  font-size: 0.8125rem;
+  gap: 0.45rem;
+}
+
+.pulse-coffee-lg {
+  height: 44px;
+  padding: 0 0.85rem;
+  font-size: 0.875rem;
+  gap: 0.55rem;
+}
+
+/* Icon container */
+.pulse-coffee-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #d97706;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+}
+
+:root.dark .pulse-coffee-icon,
+.dark .pulse-coffee-icon {
+  color: #fbbf24;
+}
+
+.pulse-coffee-btn:hover .pulse-coffee-icon {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.pulse-coffee-icon.animating {
+  animation: coffeeBounce 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes coffeeBounce {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.35) rotate(-14deg); }
+  50% { transform: scale(1.2) rotate(10deg); }
+  75% { transform: scale(1.08) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Expandable label wrapper — hidden in idle, reveals on hover & focus */
+.pulse-coffee-label-wrapper {
+  display: inline-flex;
+  align-items: center;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-4px);
+  transition: max-width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.22s ease,
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.3s ease;
+}
+
+.pulse-coffee-btn:hover .pulse-coffee-label-wrapper,
+.pulse-coffee-btn:focus-visible .pulse-coffee-label-wrapper {
+  max-width: 140px;
+  opacity: 1;
+  transform: translateX(0);
+  margin-left: 0.15rem;
+  margin-right: 0.25rem;
+}
+
+.pulse-coffee-label-text {
+  font-family: var(--font-inter, sans-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 0.8125rem;
+  color: #78350f;
+  line-height: 1;
+}
+
+:root.dark .pulse-coffee-label-text,
+.dark .pulse-coffee-label-text {
+  color: #fef3c7;
+}
+
+/* Numeric Counter pill badge starting at 800 */
+.pulse-coffee-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+  background: rgba(245, 158, 11, 0.22);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #451a03;
+  transition: transform 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+:root.dark .pulse-coffee-count,
+.dark .pulse-coffee-count {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: rgba(251, 191, 36, 0.35);
+  color: #fef08a;
+}
+
+.pulse-coffee-count.bumped {
+  animation: numberBump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes numberBump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.32); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-coffee-btn,
+  .pulse-coffee-icon,
+  .pulse-coffee-label-wrapper,
+  .pulse-coffee-count {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -70,7 +70,7 @@ export default function BackToTop() {
       <button
         type="button"
         onClick={scrollToTop}
-        aria-label="Kembali ke atas halaman"
+        aria-label={lang === "en" ? "Scroll to top of page" : "Kembali ke atas halaman"}
         className="p-2.5 rounded-full glass-panel hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-white/20 transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:scale-105"
       >
         <ArrowUp className="w-4 h-4" />

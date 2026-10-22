@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useLanguageTheme } from "@/context/LanguageThemeContext";
-import { Code2, Layers } from "lucide-react";
+import { Code2, Palette, ArrowUpRight, CheckCircle2, Cpu } from "lucide-react";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import LogoLoop from "@/components/ui/LogoLoop";
 import {
   Html5Icon,
   Css3Icon,
@@ -22,29 +24,28 @@ import {
   VercelIcon,
   VscodeIcon,
 } from "@/components/ui/Icons";
-import GlassIcons from "@/components/ui/GlassIcons";
 
 export default function ServicesSection() {
-  const { t, lang, theme } = useLanguageTheme();
+  const { t, lang } = useLanguageTheme();
 
-  // Logos restored to full original prominent size (w-8 h-8)
-  const technologies = [
-    { name: "HTML5", icon: <Html5Icon className="w-8 h-8" /> },
-    { name: "CSS3", icon: <Css3Icon className="w-8 h-8" /> },
-    { name: "JavaScript", icon: <JavascriptIcon className="w-8 h-8" /> },
-    { name: "TypeScript", icon: <TypescriptIcon className="w-8 h-8" /> },
-    { name: "React", icon: <ReactIcon className="w-8 h-8" /> },
-    { name: "Next.js", icon: <NextjsIcon className="w-8 h-8 text-slate-900 dark:text-white" /> },
-    { name: "Tailwind CSS", icon: <TailwindIcon className="w-8 h-8" /> },
-    { name: "Node.js", icon: <NodejsIcon className="w-8 h-8" /> },
-    { name: "Python", icon: <PythonIcon className="w-8 h-8" /> },
-    { name: "PHP", icon: <PhpIcon className="w-8 h-8" /> },
-    { name: "Git", icon: <GitIcon className="w-8 h-8" /> },
-    { name: "GitHub", icon: <GithubIcon className="w-8 h-8 text-slate-900 dark:text-white" /> },
-    { name: "Figma", icon: <FigmaIcon className="w-8 h-8" /> },
-    { name: "PostgreSQL", icon: <PostgresqlIcon className="w-8 h-8" /> },
-    { name: "Vercel", icon: <VercelIcon className="w-8 h-8 text-slate-900 dark:text-white" /> },
-    { name: "VS Code", icon: <VscodeIcon className="w-8 h-8" /> },
+  // All 16 core technologies fully represented with dark/light mode adaptive contrast
+  const techLogos = [
+    { title: "HTML5", node: <Html5Icon className="w-10 h-10" />, hoverColor: "#E34F26" },
+    { title: "CSS3", node: <Css3Icon className="w-10 h-10" />, hoverColor: "#1572B6" },
+    { title: "JavaScript", node: <JavascriptIcon className="w-10 h-10" />, hoverColor: "#F7DF1E" },
+    { title: "TypeScript", node: <TypescriptIcon className="w-10 h-10" />, hoverColor: "#3178C6" },
+    { title: "React", node: <ReactIcon className="w-10 h-10" />, hoverColor: "#61DAFB" },
+    { title: "Next.js", node: <NextjsIcon className="w-10 h-10 text-slate-900 dark:text-white" />, hoverColor: "#6366f1" },
+    { title: "Tailwind CSS", node: <TailwindIcon className="w-10 h-10" />, hoverColor: "#06B6D4" },
+    { title: "Node.js", node: <NodejsIcon className="w-10 h-10" />, hoverColor: "#5FA04E" },
+    { title: "Python", node: <PythonIcon className="w-10 h-10" />, hoverColor: "#3776AB" },
+    { title: "PHP", node: <PhpIcon className="w-10 h-10" />, hoverColor: "#777BB4" },
+    { title: "Git", node: <GitIcon className="w-10 h-10" />, hoverColor: "#F05032" },
+    { title: "GitHub", node: <GithubIcon className="w-10 h-10 text-slate-900 dark:text-white" />, hoverColor: "#818cf8" },
+    { title: "Figma", node: <FigmaIcon className="w-10 h-10" />, hoverColor: "#F24E1E" },
+    { title: "PostgreSQL", node: <PostgresqlIcon className="w-10 h-10" />, hoverColor: "#4169E1" },
+    { title: "Vercel", node: <VercelIcon className="w-10 h-10 text-slate-900 dark:text-white" />, hoverColor: "#6366f1" },
+    { title: "VS Code", node: <VscodeIcon className="w-10 h-10" />, hoverColor: "#007ACC" },
   ];
 
   const service1Badges =
@@ -73,23 +74,23 @@ export default function ServicesSection() {
   const service2Badges =
     lang === "id"
       ? [
+          "Desain UI/UX & Prototyping",
+          "Desain Grafis & Identitas Brand",
           "Administrasi Digital",
           "Pengelolaan Data & Spreadsheet",
           "Dokumentasi Teknis",
           "Riset Online & Fact-Checking",
-          "Analisis Sistem",
           "Otomasi Alur Kerja",
-          "Manajemen Tugas & Git Sync",
           "Produktivitas Digital",
         ]
       : [
+          "UI/UX Design & Prototyping",
+          "Graphic Design & Brand Identity",
           "Digital Administration",
           "Data & Spreadsheet Management",
           "Technical Documentation",
           "Online Research & Fact-Checking",
-          "System Analysis",
-          "Workflow Optimization",
-          "Task Tracking & Git Sync",
+          "Workflow Automation",
           "Digital Productivity",
         ];
 
@@ -100,216 +101,196 @@ export default function ServicesSection() {
       className="relative z-10 py-20 sm:py-28 overflow-hidden border-b border-slate-200 dark:border-white/5 transition-colors duration-300 scroll-mt-24 sm:scroll-mt-28"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* KOLOM KIRI (lg:col-span-5): Label, Judul, Deskripsi, & 16 Ikon Teknologi */}
-          <div className="lg:col-span-5 flex flex-col">
-            <ScrollReveal direction="up" delay={50}>
-              {/* Label Kecil "MY CAPABILITIES" */}
-              <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-slate-200/90 dark:bg-white/10 text-slate-800 dark:text-slate-200 border border-slate-300/80 dark:border-white/10 mb-4 shadow-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse" />
-                {t("services.capabilitiesTag")}
+        {/* Section Header: Editorial Lead */}
+        <ScrollReveal direction="up" delay={50}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16 pb-8 border-b border-slate-200 dark:border-white/10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 mb-4">
+                <Cpu className="w-3.5 h-3.5" />
+                <span>{t("services.capabilitiesTag")}</span>
               </div>
-
-              {/* Judul Besar Rata Kiri */}
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase mb-4 leading-tight text-left">
+              <h2 className="section-headline-gallery">
                 {t("services.title")}
               </h2>
+            </div>
+            <p className="max-w-md section-desc-gallery">
+              {t("services.desc")}
+            </p>
+          </div>
+        </ScrollReveal>
 
-              {/* Deskripsi Singkat Rata Kiri */}
-              <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed text-left mb-8 font-medium">
-                {t("services.desc")}
-              </p>
-            </ScrollReveal>
+        {/* Editorial Asymmetric Grid: 2 Distinct Panels with Hierarchy & Depth */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-16">
+          {/* Panel 1: Primary Service (IT & Web Development) - Takes 7 cols */}
+          <div className="lg:col-span-7">
+            <ScrollReveal direction="up" delay={100} className="h-full">
+              <div className="h-full glass-panel rounded-3xl p-7 sm:p-9 border border-slate-300/80 dark:border-white/10 bg-white/70 dark:bg-[#111116]/80 shadow-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Kumpulan Ikon Teknologi: Tile pembungkus kompak & rapi, ukuran logo utuh w-8 h-8 */}
-            <ScrollReveal direction="up" delay={150}>
-              <div>
-                <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3">
-                  {lang === "id" ? "Teknologi & Alat Utama" : "Core Tech Stack & Tools"}
-                </div>
-                <div className="grid grid-cols-4 gap-2 sm:gap-2.5 max-w-sm sm:max-w-md">
-                  {technologies.map((tech) => (
-                    <div
-                      key={tech.name}
-                      title={tech.name}
-                      className="group relative aspect-square rounded-xl bg-white dark:bg-[#121217] border border-slate-200/90 dark:border-white/10 hover:border-indigo-500/60 dark:hover:border-indigo-400/50 hover:bg-slate-50 dark:hover:bg-white/[0.08] flex items-center justify-center p-2 sm:p-2.5 transition-all duration-200 hover:-translate-y-1 shadow-xs hover:shadow-md cursor-default select-none"
-                    >
-                      <div className="transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
-                        {tech.icon}
-                      </div>
-
-                      {/* Tooltip Popup on Hover (Label nama teknologi utuh tanpa terpotong) */}
-                      <span className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold bg-slate-900 text-white dark:bg-white dark:text-slate-900 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-30">
-                        {tech.name}
-                      </span>
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <span className="text-4xl font-mono font-black text-indigo-600 dark:text-indigo-400">
+                      01
+                    </span>
+                    <div className="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 shadow-sm">
+                      <Code2 className="w-7 h-7" />
                     </div>
-                  ))}
+                  </div>
+
+                  <span className="text-xs font-mono text-indigo-600 dark:text-indigo-400 uppercase tracking-widest font-bold block mb-1">
+                    Engineering &amp; Architecture
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3 font-sans">
+                    {t("services.service1Title")}
+                  </h3>
+                  <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-medium">
+                    {t("services.service1Desc")}
+                  </p>
+
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service1Bullet1")}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service1Bullet2")}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service1Bullet3")}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-slate-200 dark:border-white/10">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3">
+                    {t("services.scopeLabel1")}
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {service1Badges.map((badge) => (
+                      <span
+                        key={badge}
+                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-white/[0.05] text-slate-800 dark:text-slate-200 border border-slate-300/70 dark:border-white/10"
+                      >
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase text-indigo-600 dark:text-indigo-400 hover:underline group"
+                  >
+                    <span>{t("services.service1CTA")}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </div>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* KOLOM KANAN (lg:col-span-7): Dua Kartu Layanan Besar Berdampingan pada Desktop */}
-          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-            {/* KARTU 01 - IT, Web Development & QA */}
-            <ScrollReveal direction="up" delay={100} className="h-full">
-              <div className="h-full group relative bg-white dark:bg-[#111116] border border-slate-200/90 dark:border-white/10 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300">
-                {/* Subtle Ambient Glow */}
-                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-indigo-500/10 dark:bg-indigo-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
-                </div>
+          {/* Panel 2: Secondary Service (Graphic Design & Digital Operations) - Takes 5 cols */}
+          <div className="lg:col-span-5">
+            <ScrollReveal direction="up" delay={150} className="h-full">
+              <div className="h-full glass-panel rounded-3xl p-7 sm:p-9 border border-slate-300/80 dark:border-white/10 bg-white/70 dark:bg-[#111116]/80 shadow-2xl flex flex-col justify-between group hover:border-emerald-500/50 transition-all duration-300 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-52 h-52 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
 
                 <div>
-                  {/* Header Kartu: Nomor Urut 01 + GlassIcon wadah ikon */}
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="text-3xl sm:text-4xl font-mono font-black text-indigo-600 dark:text-indigo-400 tracking-tight">
-                      01
-                    </span>
-
-                    {/* Interactive GlassIcon container */}
-                    <div className="relative shrink-0 flex items-center justify-center -mr-1 -mt-1">
-                      <GlassIcons
-                        items={[
-                          {
-                            icon: <Code2 className="w-8 h-8" strokeWidth={2.2} />,
-                            color: "indigo",
-                            label: t("services.service1Title"),
-                          },
-                        ]}
-                        size={82}
-                        gap={0}
-                        columns={1}
-                        roundness={0.6}
-                        refraction={0.8}
-                        bevel={0.6}
-                        dispersion={0}
-                        frost={0.2}
-                        shine={0.85}
-                        tint="#dfdfdf"
-                        tintOpacity={0.2}
-                        iconColor={theme === "dark" ? "#ffffff" : "#312e81"}
-                        plate="tilt"
-                        tilt={30}
-                        spread={0.5}
-                        hover="press"
-                        parallax={1}
-                        labels="hover"
-                        intro={true}
-                        theme={theme}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Judul Kategori Layanan */}
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
-                    {t("services.service1Title")}
-                  </h3>
-
-                  {/* Deskripsi Kemampuan */}
-                  <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-medium">
-                    {t("services.service1Desc")}
-                  </p>
-                </div>
-
-                {/* Daftar Keterampilan dalam Bentuk Badge Kecil */}
-                <div className="pt-4 border-t border-slate-200/90 dark:border-white/10">
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2.5">
-                    {lang === "id" ? "Keahlian & Ruang Lingkup:" : "Scope & Core Capabilities:"}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {service1Badges.map((badge) => (
-                      <span
-                        key={badge}
-                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-white/[0.06] text-slate-800 dark:text-slate-200 border border-slate-300/80 dark:border-white/10 group-hover:border-indigo-500/30 transition-colors"
-                      >
-                        {badge}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* KARTU 02 - VA & Digital Operations */}
-            <ScrollReveal direction="up" delay={200} className="h-full">
-              <div className="h-full group relative bg-white dark:bg-[#111116] border border-slate-200/90 dark:border-white/10 hover:border-emerald-500/50 dark:hover:border-emerald-500/50 rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-lg shadow-black/5 dark:shadow-black/40 transition-all duration-300">
-                {/* Subtle Ambient Glow */}
-                <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform" />
-                </div>
-
-                <div>
-                  {/* Header Kartu: Nomor Urut 02 + GlassIcon wadah ikon */}
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="text-3xl sm:text-4xl font-mono font-black text-emerald-600 dark:text-emerald-400 tracking-tight">
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <span className="text-4xl font-mono font-black text-emerald-600 dark:text-emerald-400">
                       02
                     </span>
-
-                    {/* Interactive GlassIcon container */}
-                    <div className="relative shrink-0 flex items-center justify-center -mr-1 -mt-1">
-                      <GlassIcons
-                        items={[
-                          {
-                            icon: <Layers className="w-8 h-8" strokeWidth={2.2} />,
-                            color: "green",
-                            label: t("services.service2Title"),
-                          },
-                        ]}
-                        size={82}
-                        gap={0}
-                        columns={1}
-                        roundness={0.6}
-                        refraction={0.8}
-                        bevel={0.6}
-                        dispersion={0}
-                        frost={0.2}
-                        shine={0.85}
-                        tint="#dfdfdf"
-                        tintOpacity={0.2}
-                        iconColor={theme === "dark" ? "#ffffff" : "#064e3b"}
-                        plate="tilt"
-                        tilt={30}
-                        spread={0.5}
-                        hover="press"
-                        parallax={1}
-                        labels="hover"
-                        intro={true}
-                        theme={theme}
-                      />
+                    <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 shadow-sm">
+                      <Palette className="w-7 h-7" />
                     </div>
                   </div>
 
-                  {/* Judul Kategori Layanan */}
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
+                  <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-widest font-bold block mb-1">
+                    Design &amp; Operations
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3 font-sans">
                     {t("services.service2Title")}
                   </h3>
-
-                  {/* Deskripsi Kemampuan */}
                   <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-medium">
                     {t("services.service2Desc")}
                   </p>
+
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service2Bullet1")}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service2Bullet2")}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>{t("services.service2Bullet3")}</span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Daftar Keterampilan dalam Bentuk Badge Kecil */}
-                <div className="pt-4 border-t border-slate-200/90 dark:border-white/10">
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2.5">
-                    {lang === "id" ? "Keahlian & Ruang Lingkup:" : "Scope & Core Capabilities:"}
+                <div className="pt-6 border-t border-slate-200 dark:border-white/10">
+                  <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-3">
+                    {t("services.scopeLabel2")}
                   </div>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {service2Badges.map((badge) => (
                       <span
                         key={badge}
-                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-white/[0.06] text-slate-800 dark:text-slate-200 border border-slate-300/80 dark:border-white/10 group-hover:border-emerald-500/30 transition-colors"
+                        className="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-white/[0.05] text-slate-800 dark:text-slate-200 border border-slate-300/70 dark:border-white/10"
                       >
                         {badge}
                       </span>
                     ))}
                   </div>
+
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center gap-2 text-xs font-bold font-mono uppercase text-emerald-600 dark:text-emerald-400 hover:underline group"
+                  >
+                    <span>{t("services.service2CTA")}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </div>
               </div>
             </ScrollReveal>
           </div>
         </div>
+
+        {/* SECTION 6: React Bits LogoLoop Showcase — Preserving ALL 16 Tech Logos Seamlessly */}
+        <ScrollReveal direction="up" delay={200}>
+          <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-300/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-[#111116]/80">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-200 dark:border-white/10">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300">
+                {lang === "id"
+                  ? "Teknologi, Framework & Alat Kerja (16 Terverifikasi)"
+                  : "Verified Technologies, Frameworks & Tooling (16 Total)"}
+              </span>
+              <span className="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
+                Continuous Interactive Loop
+              </span>
+            </div>
+
+            {/* Official LogoLoop Component */}
+            <div className="py-2">
+              <LogoLoop
+                logos={techLogos}
+                speed={80}
+                direction="left"
+                logoHeight={48}
+                gap={56}
+                hoverSpeed={0}
+                scaleOnHover={true}
+                labels="hover"
+                ariaLabel="Programming languages and technologies"
+                className="w-full"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

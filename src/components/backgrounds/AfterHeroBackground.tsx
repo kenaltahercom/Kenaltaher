@@ -1,62 +1,22 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useLanguageTheme } from "@/context/LanguageThemeContext";
-
-/* Galaxy is heavy (WebGL) – load only on client, no SSR */
-const Galaxy = dynamic(() => import("./Galaxy"), { ssr: false });
+import React from "react";
 
 /**
- * AfterHeroBackground
- *
- * Renders a full-height positional container that sits behind all
- * section content (z-index: 0 / -1). Inside it, Galaxy is rendered
- * only when Dark Mode is active. In Light Mode the container is
- * completely empty – no canvas, no RAF, no GPU work.
- *
- * Usage in page.tsx:
- *   Wrap the after-hero section group with a relative container
- *   and place <AfterHeroBackground /> as the first child.
+ * Static ambient background lighting layer for sections below Hero.
+ * Completely static (no WebGL, no Canvas, no animations, zero CPU/GPU overhead)
+ * Provides subtle ambient color depth for Dark & Light modes without movement.
  */
 export default function AfterHeroBackground() {
-  const { theme } = useLanguageTheme();
-  const isDark = theme === "dark";
-
   return (
     <div
       aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: "none",
-        overflow: "hidden",
-      }}
+      className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none"
     >
-      {isDark && (
-        <Galaxy
-          density={1}
-          glowIntensity={0.3}
-          flareIntensity={1}
-          starSpeed={0.5}
-          mouseRepulsion
-          clickWarp
-          starColors={[]}
-          hueShift={140}
-          saturation={0}
-          starSize={1}
-          twinkleIntensity={0.3}
-          speed={1}
-          rotationSpeed={0.1}
-          layers={4}
-          direction="forward"
-          repulsionStrength={2}
-          mouseInteraction
-          intro
-          lightMode={false}
-        />
-      )}
+      {/* Static subtle ambient gradient glows */}
+      <div className="absolute top-[10%] right-[5%] w-[500px] h-[500px] bg-indigo-600/[0.03] dark:bg-indigo-600/[0.04] rounded-full blur-[140px]" />
+      <div className="absolute top-[40%] left-[5%] w-[450px] h-[450px] bg-sky-600/[0.02] dark:bg-sky-600/[0.03] rounded-full blur-[130px]" />
+      <div className="absolute top-[75%] right-[10%] w-[550px] h-[550px] bg-purple-600/[0.02] dark:bg-purple-600/[0.03] rounded-full blur-[150px]" />
     </div>
   );
 }
-

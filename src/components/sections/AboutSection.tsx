@@ -50,7 +50,7 @@ export default function AboutSection() {
 
     const timer = setInterval(() => {
       setActiveTrait((prev) => (prev + 1) % traits.length);
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, [isPaused, traits.length]);
@@ -69,8 +69,8 @@ export default function AboutSection() {
             <span>{t("about.tag")}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white uppercase mb-12 sm:mb-16">
-            Problem Solver. <span className="text-outline">Digital Generalist.</span>
+          <h2 className="section-headline-gallery mb-12 sm:mb-16">
+            {t("about.headline")}
           </h2>
         </ScrollReveal>
 
@@ -128,7 +128,7 @@ export default function AboutSection() {
                 </div>
 
                 {/* 7. Professional Bio */}
-                <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed pt-1 font-medium">
+                <p className="section-desc-gallery pt-1">
                   {t("about.bio")}
                 </p>
 
@@ -158,140 +158,147 @@ export default function AboutSection() {
           </div>
         </ScrollReveal>
 
-        {/* Lower Block: CURRENTLY (Bottom Left) + TRAIT Cards Stacked Auto-Switching (Bottom Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* 9. CURRENTLY Section on Bottom Left */}
-          <div className="lg:col-span-7">
-            <ScrollReveal direction="up" delay={160}>
-              <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-300/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-[#111116]/80">
-                <div className="flex items-center gap-2 mb-6">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                  </span>
-                  <h4 className="text-xs font-mono font-bold tracking-widest text-slate-700 dark:text-slate-300 uppercase">
-                    {t("about.currentlyTitle")}
-                  </h4>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 transition-colors">
-                    <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 uppercase block mb-1">
-                      • {t("about.currentlyBuildingLabel")}
+        {/* Lower Block: CURRENTLY (Bottom Left) + PERSONAL TRAITS (Bottom Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* 9. CURRENTLY Section (Requirement 9: Editorial, Structured, and Concise) */}
+          <div className="lg:col-span-7 flex flex-col">
+            <ScrollReveal direction="up" delay={160} className="h-full">
+              <div className="h-full glass-panel rounded-3xl p-6 sm:p-8 border border-slate-300/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-[#111116]/80 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-6 pb-3 border-b border-slate-200 dark:border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                      </span>
+                      <h4 className="text-xs font-mono font-bold tracking-widest text-slate-800 dark:text-slate-200 uppercase">
+                        {t("about.currentlyTitle")}
+                      </h4>
+                    </div>
+                    <span className="text-[11px] font-mono font-semibold text-slate-500 dark:text-slate-400">
+                      Live Status
                     </span>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                      {t("about.currentlyBuildingDesc")}
-                    </p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 transition-colors">
-                    <span className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase block mb-1">
-                      • {t("about.currentlyExploringLabel")}
-                    </span>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                      {t("about.currentlyExploringDesc")}
-                    </p>
-                  </div>
+                  <div className="space-y-3.5">
+                    {/* Item 1: Building */}
+                    <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 hover:border-indigo-500/30 transition-all duration-200">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wide">
+                          • {t("about.currentlyBuildingLabel")}
+                        </span>
+                        <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">Active</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                        {t("about.currentlyBuildingDesc")}
+                      </p>
+                    </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 transition-colors">
-                    <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase block mb-1">
-                      • {t("about.currentlyLearningLabel")}
-                    </span>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                      {t("about.currentlyLearningDesc")}
-                    </p>
+                    {/* Item 2: Exploring */}
+                    <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 hover:border-sky-500/30 transition-all duration-200">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-xs font-mono font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wide">
+                          • {t("about.currentlyExploringLabel")}
+                        </span>
+                        <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">R&amp;D</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                        {t("about.currentlyExploringDesc")}
+                      </p>
+                    </div>
+
+                    {/* Item 3: Learning */}
+                    <div className="p-4 rounded-2xl bg-slate-100/90 dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/5 hover:border-emerald-500/30 transition-all duration-200">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
+                          • {t("about.currentlyLearningLabel")}
+                        </span>
+                        <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400">Continuous</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                        {t("about.currentlyLearningDesc")}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* 10. TRAIT Cards Stacked and Auto-Switching every 2s on Bottom Right */}
-          <div className="lg:col-span-5">
-            <ScrollReveal direction="up" delay={200}>
+          {/* 10. PERSONAL TRAITS (Requirement 10: Premium card without 'Auto-switch (2s)' label) */}
+          <div className="lg:col-span-5 flex flex-col">
+            <ScrollReveal direction="up" delay={200} className="h-full">
               <div
-                className="flex flex-col items-center justify-center py-4"
+                className="h-full glass-panel rounded-3xl p-6 sm:p-8 border border-slate-300/80 dark:border-white/10 shadow-xl bg-white/70 dark:bg-[#111116]/80 flex flex-col justify-between"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 onTouchStart={() => setIsPaused(true)}
                 onTouchEnd={() => setIsPaused(false)}
               >
-                <div className="flex items-center justify-between w-full max-w-sm mb-4 px-2">
-                  <span className="text-xs font-mono text-slate-700 dark:text-slate-300 uppercase tracking-widest font-bold">
-                    {t("about.traitsTitle")}
-                  </span>
-                  <span className="text-[10px] font-mono text-indigo-600 dark:text-indigo-400 font-semibold bg-indigo-500/10 px-2 py-0.5 rounded-full">
-                    Auto-switch (2s)
-                  </span>
-                </div>
+                <div>
+                  <div className="flex items-center justify-between mb-6 pb-3 border-b border-slate-200 dark:border-white/10">
+                    <span className="text-xs font-mono text-slate-800 dark:text-slate-200 uppercase tracking-widest font-bold">
+                      {t("about.traitsTitle")}
+                    </span>
+                    <span className="text-[11px] font-mono font-semibold text-indigo-600 dark:text-indigo-400">
+                      {String(activeTrait + 1).padStart(2, "0")} / {String(traits.length).padStart(2, "0")}
+                    </span>
+                  </div>
 
-                {/* Stacked Cards Fan Container with 3 Rotating Cards */}
-                <div className="relative w-full max-w-sm h-64 sm:h-72 flex items-center justify-center">
-                  {traits.map((trait, index) => {
-                    const offset = (index - activeTrait + traits.length) % traits.length;
-                    const isFront = offset === 0;
-                    const isMiddle = offset === 1;
+                  {/* Smooth Transition Card */}
+                  <div className="relative min-h-[170px] sm:min-h-[190px] flex items-center justify-center">
+                    {traits.map((trait, index) => {
+                      const isActive = index === activeTrait;
 
-                    let cardTransform = "translate3d(0, 18px, 0) rotate(0deg) scale(1)";
-                    let zIndex = 30;
-                    let opacity = "opacity-100";
-                    let cardBg = "bg-white dark:bg-[#1e1e28] border-indigo-500/50 shadow-2xl";
-
-                    if (isMiddle) {
-                      cardTransform = "translate3d(8px, 4px, 0) rotate(3deg) scale(0.96)";
-                      zIndex = 20;
-                      opacity = "opacity-90";
-                      cardBg = "bg-slate-100 dark:bg-[#161620] border-slate-300 dark:border-white/10 shadow-lg";
-                    } else if (!isFront) {
-                      cardTransform = "translate3d(-10px, -12px, 0) rotate(-6deg) scale(0.92)";
-                      zIndex = 10;
-                      opacity = "opacity-75";
-                      cardBg = "bg-slate-200/90 dark:bg-[#111116] border-slate-300 dark:border-white/5 shadow-md";
-                    }
-
-                    return (
-                      <div
-                        key={trait.id}
-                        onClick={() => setActiveTrait(index)}
-                        style={{
-                          transform: cardTransform,
-                          zIndex,
-                        }}
-                        className={`absolute w-[94%] p-5 sm:p-6 rounded-2xl glass-panel transition-all duration-500 ease-out cursor-pointer select-none ${opacity} ${cardBg}`}
-                      >
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className={`text-[11px] font-mono font-bold uppercase tracking-wider ${trait.accent}`}>
-                            {trait.id} • TRAIT
-                          </span>
-                          {isFront && (
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                          )}
+                      return (
+                        <div
+                          key={trait.id}
+                          className={`absolute inset-0 p-5 sm:p-6 rounded-2xl glass-panel border transition-all duration-700 ease-out flex flex-col justify-between ${
+                            isActive
+                              ? "opacity-100 translate-y-0 scale-100 z-20 pointer-events-auto bg-white/95 dark:bg-[#181822] border-indigo-500/40 shadow-xl"
+                              : "opacity-0 translate-y-3 scale-95 z-0 pointer-events-none border-transparent"
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between mb-2">
+                              <span className={`text-[11px] font-mono font-bold uppercase tracking-wider ${trait.accent}`}>
+                                {t("about.traitProfessional")} #{trait.id}
+                              </span>
+                              <span className="w-2 h-2 rounded-full bg-indigo-500" />
+                            </div>
+                            <h5 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2.5 font-sans leading-tight">
+                              {trait.title}
+                            </h5>
+                            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                              {trait.desc}
+                            </p>
+                          </div>
                         </div>
-                        <h5 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2 font-sans">
-                          {trait.title}
-                        </h5>
-                        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                          {trait.desc}
-                        </p>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* 3 Interactive Dots for Visual Feedback */}
-                <div className="flex items-center gap-2 mt-4" role="tablist" aria-label="Personal Traits Indicators">
-                  {traits.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setActiveTrait(i)}
-                      aria-label={`Lihat trait ke-${i + 1}`}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${i === activeTrait
-                          ? "w-6 bg-indigo-600 shadow-sm"
-                          : "w-2 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
+                {/* Interactive Dots for Visual Feedback & Direct Selection */}
+                <div className="flex items-center justify-between pt-6 mt-4 border-t border-slate-200 dark:border-white/10">
+                  <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    {t("about.selectTrait")}
+                  </span>
+                  <div className="flex items-center gap-2" role="tablist" aria-label="Personal Traits Indicators">
+                    {traits.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setActiveTrait(i)}
+                        aria-label={`${t("about.viewTrait")}${i + 1}`}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                          i === activeTrait
+                            ? "w-7 bg-indigo-600 shadow-xs"
+                            : "w-2.5 bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
                         }`}
-                    />
-                  ))}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </ScrollReveal>

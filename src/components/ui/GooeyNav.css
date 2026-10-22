@@ -1,9 +1,9 @@
-﻿.gooey-nav {
+.gooey-nav {
   --gn-pad: 6px;
-  --gn-gap: 4px;
-  --gn-font: 14px;
-  --gn-x: 16px;
-  --gn-y: 9px;
+  --gn-gap: 5px;
+  --gn-font: 15px;
+  --gn-x: 18px;
+  --gn-y: 10px;
   position: relative;
   display: inline-flex;
   max-width: 100%;
