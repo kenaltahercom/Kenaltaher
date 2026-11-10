@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/data/siteConfig";
-import KenaltaherMascot from "@/components/mascot/KenaltaherMascot";
 import { useLanguageTheme } from "@/context/LanguageThemeContext";
 import { Menu, X, ArrowUpRight, Sun, Moon, Mail } from "lucide-react";
-import GooeyNav from "@/components/ui/GooeyNav";
 import { contactConfig } from "@/config/contact";
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/Icons";
+import PillNav from "@/components/ui/PillNav";
+import StarBorder from "@/components/ui/StarBorder";
+import BellToggle from "@/components/ui/BellToggle";
 
 export default function Navbar() {
   const { lang, setLang, theme, toggleTheme, t } = useLanguageTheme();
@@ -28,8 +30,8 @@ export default function Navbar() {
     { label: t("nav.work"), href: "/#work" },
     { label: t("nav.services"), href: "/#services" },
     { label: t("nav.about"), href: "/#about" },
-    { label: t("nav.awards"), href: "/#awards" },
     { label: t("nav.trainings"), href: "/#experience" },
+    { label: t("nav.awards"), href: "/#awards" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -54,8 +56,8 @@ export default function Navbar() {
       { id: "work", index: 0 },
       { id: "services", index: 1 },
       { id: "about", index: 2 },
-      { id: "awards", aliasId: "achievements", index: 3 },
-      { id: "experience", index: 4 },
+      { id: "experience", index: 3 },
+      { id: "awards", aliasId: "achievements", index: 4 },
     ];
 
     const onScroll = () => {
@@ -93,46 +95,57 @@ export default function Navbar() {
         }`}
       >
         {/* Brand / Logo di Sebelah Kiri */}
-        <div className="flex items-center gap-3.5">
-          <KenaltaherMascot
-            initialPose="navbar"
-            size="sm"
-            showGreeting={true}
-            interactive={true}
-            className="hover:rotate-3 transition-transform"
-          />
-          <Link
-            href="/"
-            className="flex flex-col text-foreground group focus-visible:outline-2 focus-visible:outline-indigo-500 rounded-lg"
-            aria-label="Kembali ke Beranda Kenaltaher"
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 sm:gap-3 text-foreground group focus-visible:outline-2 focus-visible:outline-indigo-500 rounded-lg"
+          aria-label="Kembali ke Beranda Kenaltaher"
+        >
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl p-1.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 bg-slate-200/60 dark:bg-white/[0.08] border border-slate-300/80 dark:border-white/15 shadow-sm">
+            {/* Dark logo for Light Mode */}
+            <Image
+              src="/images/logo-k-dark.png"
+              alt="Kenaltaher Logo"
+              width={36}
+              height={36}
+              className="object-contain w-full h-full dark:hidden"
+              priority
+            />
+            {/* White logo for Dark Mode */}
+            <Image
+              src="/images/logo-k-white.png"
+              alt="Kenaltaher Logo"
+              width={36}
+              height={36}
+              className="object-contain w-full h-full hidden dark:block"
+              priority
+            />
+          </div>
+          <span
+            className="font-black tracking-normal text-xl sm:text-2xl text-slate-900 dark:text-white transition-colors"
+            style={{ fontFamily: "'Varien', sans-serif" }}
           >
-            <span className="font-extrabold tracking-wider text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors uppercase">
-              {siteConfig.brandName}
-            </span>
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono tracking-tight hidden sm:block">
-              {siteConfig.ownerName}
-            </span>
-          </Link>
-        </div>
+            Kenaltaher
+          </span>
+        </Link>
 
-        {/* Desktop Links — GooeyNav (Work, What I Can Do, About, Awards, Trainings) */}
+        {/* Desktop Links — Animated PillNav from React Bits */}
         <div className="hidden lg:flex items-center">
-          <GooeyNav
+          <PillNav
+            key={lang}
             items={navLinks}
-            activeIndex={activeNavIndex}
-            onChange={(index) => {
+            activeHref={navLinks[activeNavIndex]?.href}
+            onItemClick={(item, index, event) => {
+              event.preventDefault();
               setActiveNavIndex(index);
-              const href = navLinks[index]?.href;
-              if (href) scrollToSection(href);
+              if (item.href) scrollToSection(item.href);
             }}
-            theme={theme}
-            size="md"
-            frame={false}
-            gooeyness={0.45}
-            wobble={0.4}
-            particleCount={12}
-            animationTime={550}
-            spread={48}
+            theme={theme === "light" ? "light" : "dark"}
+            itemStyle="pill"
+            hoverEffect="fill"
+            indicator="dot"
+            size="sm"
+            surface="none"
+            collapse="never"
           />
         </div>
 
@@ -146,63 +159,65 @@ export default function Navbar() {
             aria-label={`Ganti ke mode ${theme === "dark" ? "terang" : "gelap"}`}
             title={`Mode: ${theme}`}
           >
-            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-800" />}
           </button>
 
-          {/* Language Selector (ID | EN) Tepat di sebelah kontrol tema */}
-          <div className="flex items-center rounded-full glass-panel p-0.5 border border-slate-300 dark:border-white/10 text-xs sm:text-[13px] font-mono">
-            <button
-              type="button"
-              onClick={() => setLang("id")}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                lang === "id"
-                  ? "bg-indigo-600 text-white shadow-sm"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
-              aria-label="Bahasa Indonesia"
-            >
-              ID
-            </button>
-            <span className="text-slate-400 dark:text-slate-600">|</span>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
-                lang === "en"
-                  ? "bg-indigo-600 text-white shadow-sm"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
-              aria-label="English Language"
-            >
-              EN
-            </button>
-          </div>
+          {/* Language Toggle with BellToggle from React Bits */}
+          <BellToggle
+            offLabel="ID"
+            onLabel="EN"
+            label="Toggle Language"
+            pressed={lang === "en"}
+            onChange={(isEn) => setLang(isEn ? "en" : "id")}
+            size="sm"
+            radius={20}
+            color={theme === "light" ? "#18181b" : "#f5f5f5"}
+            background={theme === "light" ? "rgba(0, 0, 0, 0.05)" : "rgba(255, 255, 255, 0.08)"}
+            onColor={theme === "light" ? "#ffffff" : "#18181b"}
+            onBackground={theme === "light" ? "#0f172a" : "#f5f5f5"}
+            badge={false}
+            waves={true}
+          />
 
-          {/* Tombol Hire Me di Ujung Kanan */}
-          <Link
+          {/* Tombol Hire Me di Ujung Kanan dengan StarBorder */}
+          <StarBorder
+            as={Link}
             href="/#contact"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.preventDefault();
               scrollToSection("/#contact");
             }}
-            className="group relative inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-900 text-white dark:bg-white dark:text-black hover:bg-slate-800 dark:hover:bg-slate-200 transition-all duration-300 shadow-md shadow-black/10 dark:shadow-white/10"
+            theme={theme === "light" ? "light" : "dark"}
+            color={theme === "light" ? "#18181b" : "#ffffff"}
+            duration={3.5}
+            thickness={1}
+            radius={9999}
+            glow={0.5}
+            className="!px-4 !py-2 !text-xs sm:!text-sm font-semibold tracking-wide"
           >
             <span>{t("nav.hireMe")}</span>
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+            <ArrowUpRight className="w-3.5 h-3.5 ml-0.5 inline-block" />
+          </StarBorder>
         </div>
 
         {/* Mobile Controls & Hamburger Toggle */}
         <div className="flex sm:hidden items-center gap-2">
-          {/* Quick Language Toggle on Mobile */}
-          <button
-            type="button"
-            onClick={() => setLang(lang === "id" ? "en" : "id")}
-            className="px-2 py-1 rounded-lg glass-panel text-[11px] font-mono font-bold text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-white/10"
-            aria-label="Ganti Bahasa"
-          >
-            {lang.toUpperCase()}
-          </button>
+          {/* Quick BellToggle Language Switcher on Mobile */}
+          <BellToggle
+            offLabel="ID"
+            onLabel="EN"
+            label="Toggle Language"
+            pressed={lang === "en"}
+            onChange={(isEn) => setLang(isEn ? "en" : "id")}
+            size="sm"
+            radius={18}
+            color={theme === "light" ? "#18181b" : "#f5f5f5"}
+            background={theme === "light" ? "rgba(0, 0, 0, 0.05)" : "rgba(255, 255, 255, 0.08)"}
+            onColor={theme === "light" ? "#ffffff" : "#18181b"}
+            onBackground={theme === "light" ? "#0f172a" : "#f5f5f5"}
+            badge={false}
+            waves={false}
+          />
 
           {/* Mobile Theme Toggle */}
           <button
@@ -211,13 +226,13 @@ export default function Navbar() {
             className="p-1.5 rounded-lg glass-panel text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-white/10"
             aria-label="Ganti Tema"
           >
-            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-600" />}
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-800" />}
           </button>
 
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="p-2 rounded-xl text-slate-800 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-zinc-400"
             aria-expanded={mobileMenuOpen}
             aria-label="Buka menu navigasi"
           >
@@ -239,7 +254,7 @@ export default function Navbar() {
                   setMobileMenuOpen(false);
                   scrollToSection(link.href);
                 }}
-                className="py-3 px-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors flex items-center justify-between"
+                className="py-3 px-2 text-sm font-medium text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors flex items-center justify-between"
               >
                 <span>{link.label}</span>
                 <ArrowUpRight className="w-4 h-4 text-slate-400 dark:text-slate-500" />
@@ -249,26 +264,21 @@ export default function Navbar() {
 
           <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-white/10">
             <span className="text-xs text-slate-600 dark:text-slate-400 font-mono">Bahasa / Language:</span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => setLang("id")}
-                className={`px-3 py-1 rounded-lg text-xs font-bold ${
-                  lang === "id" ? "bg-indigo-600 text-white" : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400"
-                }`}
-              >
-                Bahasa Indonesia (ID)
-              </button>
-              <button
-                type="button"
-                onClick={() => setLang("en")}
-                className={`px-3 py-1 rounded-lg text-xs font-bold ${
-                  lang === "en" ? "bg-indigo-600 text-white" : "bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400"
-                }`}
-              >
-                English (EN)
-              </button>
-            </div>
+            <BellToggle
+              offLabel="ID"
+              onLabel="EN"
+              label="Toggle Language"
+              pressed={lang === "en"}
+              onChange={(isEn) => setLang(isEn ? "en" : "id")}
+              size="sm"
+              radius={18}
+              color={theme === "light" ? "#18181b" : "#f5f5f5"}
+              background={theme === "light" ? "rgba(0, 0, 0, 0.05)" : "rgba(255, 255, 255, 0.08)"}
+              onColor={theme === "light" ? "#ffffff" : "#18181b"}
+              onBackground={theme === "light" ? "#0f172a" : "#f5f5f5"}
+              badge={false}
+              waves={true}
+            />
           </div>
 
           {/* Quick Official Social & Contact Icons */}
@@ -323,17 +333,24 @@ export default function Navbar() {
             </a>
           </div>
 
-          <a
+          <StarBorder
+            as="a"
             href="/#contact"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent) => {
               e.preventDefault();
               setMobileMenuOpen(false);
               scrollToSection("/#contact");
             }}
-            className="mt-1 text-center py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black font-bold text-sm transition-colors shadow-lg"
+            theme={theme === "light" ? "light" : "dark"}
+            color={theme === "light" ? "#18181b" : "#ffffff"}
+            duration={3.5}
+            thickness={1}
+            radius={12}
+            glow={0.5}
+            className="mt-1 w-full text-center !py-2.5 font-bold text-sm"
           >
-            {t("nav.hireMe")}
-          </a>
+            <span>{t("nav.hireMe")}</span>
+          </StarBorder>
         </div>
       )}
     </header>

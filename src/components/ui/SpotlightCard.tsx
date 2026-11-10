@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./SpotlightCard.css";
+
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 interface ThemeConfig {
   surface: string;
@@ -116,7 +118,7 @@ export default function SpotlightCard({
     grain: clamp(grain, 0, 1),
   };
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+  useIsomorphicLayoutEffect(() => { settingsRef.current = settings; }, [settings]);
 
   useEffect(() => {
     wakeRef.current?.();

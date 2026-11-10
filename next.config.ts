@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   turbopack: {
+    // Keep Next.js rooted in this repository instead of the parent Downloads folder.
+    root: process.cwd(),
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

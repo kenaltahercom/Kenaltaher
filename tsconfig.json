@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@hugeicons/react": ["./src/components/ui/hugeicons/react"],
+      "@hugeicons/core-free-icons": ["./src/components/ui/hugeicons/core-free-icons"]
     }
   },
   "include": [

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import './Lightfall.css';
 
 const MAX_COLORS = 8;
@@ -414,7 +414,8 @@ const Lightfall = ({
   const [generation, setGeneration] = useState(0);
   const [isSupported, setIsSupported] = useState(true);
 
-  settingsRef.current = {
+  useLayoutEffect(() => {
+    settingsRef.current = {
     colors: (Array.isArray(colors) && colors.length ? colors : ['#ffffff']).slice(0, MAX_COLORS).map(String),
     backgroundColor: String(backgroundColor),
     speed,
@@ -441,7 +442,8 @@ const Lightfall = ({
     lightMode,
     paused,
     dpr
-  };
+    };
+  });
 
   useEffect(() => {
     const container = containerRef.current;

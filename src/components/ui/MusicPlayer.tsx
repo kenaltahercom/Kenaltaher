@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2, VolumeX, AlertCircle } from "lucide-react";
 
 const AUDIO_SRC = "/audio/sempurna.mp3";
@@ -35,25 +35,24 @@ export default function MusicPlayer() {
   const [isMuted, setIsMuted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const animFrameRef = useRef<number>(0);
 
-  // Connect to singleton audio instance
+  // Connect to the singleton and keep UI state in sync through media events.
   useEffect(() => {
     const audio = getGlobalAudio();
-    if (!audio) return;
+    if (!audio) return undefined;
     audioRef.current = audio;
 
-    // Sync initial state if audio is already active
-    if (!isNaN(audio.duration) && audio.duration > 0) {
-      setDuration(audio.duration);
-      setIsLoaded(true);
-    }
-    setCurrentTime(audio.currentTime);
-    setIsPlaying(!audio.paused);
-    setIsMuted(audio.muted);
+    const initialSyncFrame = window.requestAnimationFrame(() => {
+      const hasDuration = Number.isFinite(audio.duration) && audio.duration > 0;
+      setDuration(hasDuration ? audio.duration : 0);
+      setIsLoaded(hasDuration);
+      setCurrentTime(audio.currentTime);
+      setIsPlaying(!audio.paused);
+      setIsMuted(audio.muted);
+    });
 
     const handleLoaded = () => {
-      setDuration(audio.duration);
+      setDuration(Number.isFinite(audio.duration) ? audio.duration : 0);
       setIsLoaded(true);
       setError(null);
     };
@@ -68,41 +67,30 @@ export default function MusicPlayer() {
       setCurrentTime(0);
     };
 
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
+    const handleVolumeChange = () => setIsMuted(audio.muted);
 
     audio.addEventListener("loadedmetadata", handleLoaded);
     audio.addEventListener("error", handleError);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
+    audio.addEventListener("volumechange", handleVolumeChange);
 
     return () => {
+      window.cancelAnimationFrame(initialSyncFrame);
       audio.removeEventListener("loadedmetadata", handleLoaded);
       audio.removeEventListener("error", handleError);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("play", handlePlay);
       audio.removeEventListener("pause", handlePause);
-      cancelAnimationFrame(animFrameRef.current);
+      audio.removeEventListener("volumechange", handleVolumeChange);
     };
   }, []);
-
-  // Sync time via rAF for smooth progress
-  const updateProgress = useCallback(() => {
-    if (audioRef.current && isPlaying) {
-      setCurrentTime(audioRef.current.currentTime);
-      animFrameRef.current = requestAnimationFrame(updateProgress);
-    }
-  }, [isPlaying]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      animFrameRef.current = requestAnimationFrame(updateProgress);
-    } else {
-      cancelAnimationFrame(animFrameRef.current);
-    }
-    return () => cancelAnimationFrame(animFrameRef.current);
-  }, [isPlaying, updateProgress]);
 
   const togglePlay = async () => {
     const audio = audioRef.current;

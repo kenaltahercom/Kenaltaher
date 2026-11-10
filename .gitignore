@@ -39,3 +39,22 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Local-only references and audit artifacts
+/foto aset portof/
+/PATCH-NOTES.md
+/tatus --short
+/public/mascot/test-*.png
+
+# Local asset processing scripts
+/scripts/
+
+# macOS archive metadata
+.DS_Store
+**/__MACOSX/
+# Keep Hezba only
+/public/fonts/OTF/
+/public/fonts/TTF/
+/public/fonts/WOFF/
+/public/fonts/Variable Font/
+/public/fonts/Varien.ttf
+/public/fonts/__MACOSX/

@@ -8,6 +8,7 @@ import Footer from "@/components/navigation/Footer";
 import { LanguageThemeProvider } from "@/context/LanguageThemeContext";
 import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
+import StarBorder from "@/components/ui/StarBorder";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -43,13 +44,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <div className="mb-8 flex items-center justify-between">
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Kembali ke Arsip Karya</span>
               </Link>
 
-              <span className="text-xs font-mono text-indigo-500 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+              <span className="text-xs font-mono font-medium text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-white/[0.08] px-3.5 py-1 rounded-full border border-slate-300/80 dark:border-white/15">
                 {project.category}
               </span>
             </div>
@@ -100,15 +101,22 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Action Links */}
             <div className="flex flex-wrap items-center gap-4 mb-16 pb-8 border-b border-slate-200 dark:border-white/5">
               {project.projectUrl && project.projectUrl !== "#" && (
-                <a
+                <StarBorder
+                  as="a"
                   href={project.projectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black font-semibold text-sm flex items-center gap-2 hover:opacity-90 transition-colors shadow-lg"
+                  duration={4}
+                  thickness={1}
+                  radius={12}
+                  glow={0.5}
+                  hover="lap"
+                  clickPulse
+                  className="!px-6 !py-3 !text-sm font-semibold tracking-wide"
                 >
                   <span>Kunjungi Website Live</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
+                  <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
+                </StarBorder>
               )}
 
               {project.githubUrl && (
@@ -123,11 +131,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </a>
               )}
 
-              <Link
-                href="/#contact"
-                className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm flex items-center gap-2 transition-colors ml-auto shadow-md shadow-indigo-600/20"
-              >
-                <span>Diskusikan Proyek Serupa</span>
+              <Link href="/#contact" className="ml-auto inline-flex">
+                <StarBorder
+                  as="span"
+                  duration={3.5}
+                  thickness={1}
+                  radius={12}
+                  glow={0.6}
+                  hover="lap"
+                  clickPulse
+                  className="!px-6 !py-3 !text-sm font-semibold tracking-wide"
+                >
+                  <span>Diskusikan Proyek Serupa</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1 inline-block" />
+                </StarBorder>
               </Link>
             </div>
 
@@ -174,7 +191,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {caseStudy.keyFeatures.map((feat, idx) => (
                         <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-100/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5">
-                          <CheckCircle2 className="w-4 h-4 text-indigo-500 dark:text-indigo-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
                           <span className="text-xs sm:text-sm text-slate-700 dark:text-slate-300">{feat}</span>
                         </div>
                       ))}
@@ -191,7 +208,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     <ul className="space-y-2.5">
                       {caseStudy.deliverables.map((item, idx) => (
                         <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-800 dark:bg-slate-200" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -204,6 +221,31 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 Studi kasus detail sedang dalam penyusunan dokumentasi lanjutan.
               </div>
             )}
+
+            {/* Bottom Project Discussion CTA Box */}
+            <div className="mt-16 p-8 sm:p-10 rounded-2xl glass-panel border border-slate-200 dark:border-white/10 text-center flex flex-col items-center">
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3">
+                Tertarik Membangun Proyek Seperti Ini?
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-lg mb-6">
+                Mari diskusikan visi, kebutuhan arsitektur, dan timeline proyek Anda secara langsung bersama Taher Daeng Matora.
+              </p>
+              <Link href="/#contact" className="inline-flex">
+                <StarBorder
+                  as="span"
+                  duration={3.5}
+                  thickness={1}
+                  radius={9999}
+                  glow={0.7}
+                  hover="lap"
+                  clickPulse
+                  className="!px-8 !py-3.5 !text-sm sm:!text-base font-bold tracking-wide"
+                >
+                  <span>Diskusikan Proyek Serupa</span>
+                  <ArrowUpRight className="w-4 h-4 ml-1.5 inline-block" />
+                </StarBorder>
+              </Link>
+            </div>
 
             {/* Technology Badges Full */}
             <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/5">

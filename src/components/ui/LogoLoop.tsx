@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @typescript-eslint/no-explicit-any -- The canvas engine keeps heterogeneous geometry and DOM state across projection modes; the public API remains strongly typed. */
+
 import React, {
   memo,
   useEffect,

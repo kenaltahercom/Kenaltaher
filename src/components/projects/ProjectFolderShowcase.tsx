@@ -19,19 +19,19 @@ const PROJECT_META: Record<
   }
 > = {
   "kenaltaher-portfolio": {
-    color: "#6366f1",
+    color: "#27272a",
     label: "Kenaltaher",
   },
   "modern-business-landing": {
-    color: "#0284c7",
+    color: "#334155",
     label: "Business",
   },
   "educational-portal-system": {
-    color: "#059669",
+    color: "#1e293b",
     label: "Education",
   },
   "creative-showcase-concept": {
-    color: "#8b5cf6",
+    color: "#3f3f46",
     label: "Creative Hub",
   },
 };
@@ -200,7 +200,7 @@ export default function ProjectFolderShowcase({ projects }: ProjectFolderShowcas
                 onClick={() => handleSelectProject(project.slug)}
                 className={`mt-4 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all duration-300 flex items-center gap-1.5 border shadow-sm ${
                   isActive
-                    ? "bg-slate-900 text-white dark:bg-white dark:text-black border-slate-950 dark:border-white shadow-md shadow-indigo-500/20"
+                    ? "bg-slate-900 text-white dark:bg-white dark:text-black border-slate-950 dark:border-white shadow-md shadow-zinc-500/20"
                     : "glass-panel text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border-slate-300 dark:border-white/10"
                 }`}
               >
@@ -213,7 +213,7 @@ export default function ProjectFolderShowcase({ projects }: ProjectFolderShowcas
                 />
                 <span>{meta.label}</span>
                 {isActive && (
-                  <span className="text-[10px] uppercase font-bold text-indigo-400 dark:text-indigo-600 ml-1">
+                  <span className="text-[10px] uppercase font-bold text-zinc-400 dark:text-zinc-500 ml-1">
                     • Active
                   </span>
                 )}
@@ -233,7 +233,7 @@ export default function ProjectFolderShowcase({ projects }: ProjectFolderShowcas
           {/* Header Row: Category, Role, Title & CTA Buttons */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/5">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-indigo-500 dark:text-indigo-400 mb-1.5 uppercase tracking-wider font-semibold">
+              <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider font-semibold">
                 <Layers className="w-3.5 h-3.5" />
                 <span>
                   {activeProject.category} • {activeProject.role}
@@ -251,7 +251,7 @@ export default function ProjectFolderShowcase({ projects }: ProjectFolderShowcas
             <div className="flex items-center gap-3">
               <Link
                 href={`/work/${activeProject.slug}`}
-                className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-colors shadow-lg shadow-indigo-600/30"
+                className="px-4 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-black hover:opacity-90 font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-md"
               >
                 <BookOpen className="w-4 h-4" />
                 <span>{t("featured.viewCaseStudy")}</span>
@@ -299,7 +299,7 @@ export default function ProjectFolderShowcase({ projects }: ProjectFolderShowcas
           href="/work"
           className="group inline-flex items-center gap-2 px-6 py-3 rounded-full glass-panel hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black text-slate-900 dark:text-slate-200 border border-slate-300 dark:border-white/15 text-sm font-semibold transition-all duration-300 shadow-lg"
         >
-          <FolderKanban className="w-4 h-4 text-indigo-500" />
+          <FolderKanban className="w-4 h-4 text-slate-700 dark:text-slate-300" />
           <span>
             {t("featured.viewAllArchive")} ({total}+ Proyek)
           </span>

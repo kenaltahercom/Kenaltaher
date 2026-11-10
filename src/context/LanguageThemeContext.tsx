@@ -16,12 +16,12 @@ interface LanguageThemeContextType {
 const translations: Record<Language, Record<string, string>> = {
   id: {
     // Nav
-    "nav.work": "Work",
-    "nav.services": "What I Can Do",
-    "nav.about": "About",
-    "nav.awards": "Awards",
-    "nav.trainings": "Trainings",
-    "nav.hireMe": "Hire Me",
+    "nav.work": "Karya",
+    "nav.services": "Layanan",
+    "nav.about": "Profil",
+    "nav.trainings": "Pendidikan",
+    "nav.awards": "Penghargaan",
+    "nav.hireMe": "Hubungi",
     "nav.contact": "Kontak",
 
     // Intro
@@ -101,11 +101,11 @@ const translations: Record<Language, Record<string, string>> = {
     "about.selectTrait": "Pilih Karakter:",
     "about.viewTrait": "Lihat karakter ke-",
 
-    // Experience / Trainings
-    "trainings.tag": "TRAININGS & PENGALAMAN",
-    "trainings.title": "Perjalanan",
-    "trainings.titleOutline": "Profesional",
-    "trainings.desc": "Rekam jejak pengerjaan proyek rekayasa web, pelatihan, dan kolaborasi digital.",
+    // Experience / Trainings / Education
+    "trainings.tag": "LATAR BELAKANG PENDIDIKAN",
+    "trainings.title": "Latar Belakang",
+    "trainings.titleOutline": "Pendidikan",
+    "trainings.desc": "Jejak riwayat pendidikan formal dari jenjang menengah pertama, menengah kejuruan, hingga perguruan tinggi di bidang Sistem Informasi.",
     "trainings.skillCategoriesLabel": "Area Keahlian & Teknologi:",
 
     // Awards
@@ -196,10 +196,10 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Nav
     "nav.work": "Work",
-    "nav.services": "What I Can Do",
-    "nav.about": "About",
+    "nav.services": "Services",
+    "nav.about": "Profile",
+    "nav.trainings": "Education",
     "nav.awards": "Awards",
-    "nav.trainings": "Trainings",
     "nav.hireMe": "Hire Me",
     "nav.contact": "Contact",
 
@@ -280,11 +280,11 @@ const translations: Record<Language, Record<string, string>> = {
     "about.selectTrait": "Select Trait:",
     "about.viewTrait": "View trait #",
 
-    // Experience / Trainings
-    "trainings.tag": "TRAININGS & EXPERIENCE",
-    "trainings.title": "Professional",
-    "trainings.titleOutline": "Journey",
-    "trainings.desc": "Verified track record of web engineering projects, technical trainings, and digital initiatives.",
+    // Experience / Trainings / Education
+    "trainings.tag": "EDUCATION BACKGROUND",
+    "trainings.title": "Education",
+    "trainings.titleOutline": "Background",
+    "trainings.desc": "Formal academic journey from junior high school, vocational high school, to higher education in Information Systems.",
     "trainings.skillCategoriesLabel": "Skill Areas & Tech Stack:",
 
     // Awards

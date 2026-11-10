@@ -1170,7 +1170,9 @@ const Folder: React.FC<FolderProps> = ({
   );
 
   const setOpenRef = useRef(setOpen);
-  setOpenRef.current = setOpen;
+  useIsomorphicLayoutEffect(() => {
+    setOpenRef.current = setOpen;
+  }, [setOpen]);
 
   const rgb = parseColor(color);
   const paper = parseColor(paperColor);
@@ -1210,7 +1212,7 @@ const Folder: React.FC<FolderProps> = ({
     g,
   });
 
-  settingsRef.current = {
+  const settings = {
     open: isOpen,
     layout,
     openOn,
@@ -1235,12 +1237,17 @@ const Folder: React.FC<FolderProps> = ({
     insideTone: [
       mixRgb(rgb, [0, 0, 0], 0.08).map((v) => v / 255) as [number, number, number],
       backTone.map((v) => v / 255) as [number, number, number],
-    ],
+    ] as [[number, number, number], [number, number, number]],
     content: `${mode}|${scale}|${paperColor}|${color}|${g.tabX}|${g.tabW}`,
     depth: Math.round(Math.max(g.w, g.h) * 5),
     view,
     g,
   };
+  useIsomorphicLayoutEffect(() => {
+    settingsRef.current = settings;
+  }, [settings]);
+
+  const folderDepth = Math.round(Math.max(g.w, g.h) * 5);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -2188,7 +2195,7 @@ const Folder: React.FC<FolderProps> = ({
     "--folder-doc-w": `${g.docW}px`,
     "--folder-doc-h": `${g.docH}px`,
     "--folder-frost": `${(1.5 + clamp(frost, 0, 1) * 10) * scale}px`,
-    "--folder-depth": `${settingsRef.current.depth}px`,
+    "--folder-depth": `${folderDepth}px`,
     "--folder-scale": scale,
     ...style,
   } as CSSProperties;

@@ -22,14 +22,6 @@ export default function ScrollReveal({
     const el = ref.current;
     if (!el) return;
 
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setIsVisible(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -62,7 +54,7 @@ export default function ScrollReveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-[550ms] ease-out will-change-transform ${getTransform()} ${className}`}
+      className={`transition-all duration-[550ms] ease-out will-change-transform motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:translate-x-0 ${getTransform()} ${className}`}
     >
       {children}
     </div>

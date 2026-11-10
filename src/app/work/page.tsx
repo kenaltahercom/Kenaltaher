@@ -39,7 +39,7 @@ export default function WorkArchivePage() {
             <div className="mb-8">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Kembali ke Beranda</span>
@@ -48,7 +48,7 @@ export default function WorkArchivePage() {
 
             {/* Archive Header */}
             <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-mono text-indigo-500 dark:text-indigo-400 mb-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-300 dark:border-white/10 text-xs font-mono text-slate-800 dark:text-slate-200 mb-4">
                 <Layers className="w-3.5 h-3.5" />
                 <span>ARSIP PROYEK LENGKAP</span>
               </div>

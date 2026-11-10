@@ -364,7 +364,6 @@ export default function GooeyNav({
   const fallbackRef = useRef<HTMLSpanElement>(null);
   const engineRef = useRef<{ go: (i: number) => void; refresh: () => void } | null>(null);
   const indexRef = useRef(current);
-  indexRef.current = current;
 
   const palette: Palette = theme === "light" ? "light" : "dark";
   const pillColor = color ?? PILLS[palette].color;
@@ -384,7 +383,10 @@ export default function GooeyNav({
     shadow: PILLS[palette].shadow,
   };
   const settingsRef = useRef<Settings>(settings);
-  settingsRef.current = settings;
+  useIsomorphicLayoutEffect(() => {
+    indexRef.current = current;
+    settingsRef.current = settings;
+  }, [current, settings]);
 
   const select = (index: number) => {
     if (index === current) {

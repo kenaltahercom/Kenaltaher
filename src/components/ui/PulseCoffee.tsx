@@ -24,22 +24,26 @@ export default function PulseCoffee({ className = "", size = "md" }: PulseCoffee
 
   // Safely hydrate from localStorage on client mount, ensuring starting threshold is >= 800
   useEffect(() => {
-    setIsMounted(true);
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = parseInt(saved, 10);
-        if (!isNaN(parsed) && parsed >= INITIAL_COUNT) {
-          setCount(parsed);
-          return;
+    const frame = window.requestAnimationFrame(() => {
+      setIsMounted(true);
+      try {
+        const saved = window.localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = Number.parseInt(saved, 10);
+          if (Number.isFinite(parsed) && parsed >= INITIAL_COUNT) {
+            setCount(parsed);
+            return;
+          }
         }
+        // Initialize or upgrade previous test counters (< 800) to 800.
+        window.localStorage.setItem(STORAGE_KEY, INITIAL_COUNT.toString());
+        setCount(INITIAL_COUNT);
+      } catch {
+        // localStorage disabled or private browsing fallback.
       }
-      // Initialize or upgrade previous test counters (< 800) to 800
-      localStorage.setItem(STORAGE_KEY, INITIAL_COUNT.toString());
-      setCount(INITIAL_COUNT);
-    } catch {
-      // localStorage disabled or private browsing fallback
-    }
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const handleClick = useCallback(() => {

@@ -7,7 +7,11 @@ export type MascotPose =
   | "thinking"
   | "loading"
   | "shoulder"
-  | "navbar";
+  | "navbar"
+  | "angry"
+  | "sleepy"
+  | "love"
+  | "coding";
 
 export interface MascotMessagePair {
   id: string;
@@ -197,6 +201,78 @@ export const MASCOT_POSES: Record<MascotPose, MascotPoseData> = {
       icon: "👋",
     },
   },
+  angry: {
+    key: "angry",
+    title: {
+      id: "Keno Kesal",
+      en: "Keno Angry",
+    },
+    imagePng: "/mascot/keno-angry.png",
+    imageWebp: "/mascot/keno-angry.webp",
+    alt: {
+      id: "Maskot Keno cemberut dengan ekspresi kesal",
+      en: "Mascot Keno pouting with an angry expression",
+    },
+    textPair: {
+      id: "Hmph! Jangan ganggu aku lagi!",
+      en: "Hmph! Don't bother me again!",
+      icon: "😤",
+    },
+  },
+  sleepy: {
+    key: "sleepy",
+    title: {
+      id: "Keno Mengantuk",
+      en: "Keno Sleepy",
+    },
+    imagePng: "/mascot/keno-sleepy.png",
+    imageWebp: "/mascot/keno-sleepy.webp",
+    alt: {
+      id: "Maskot Keno mengantuk dengan mata setengah terpejam dan ZZz",
+      en: "Mascot Keno sleepy with half-closed eyes and ZZz marks",
+    },
+    textPair: {
+      id: "Zz... butuh kopi dulu...",
+      en: "Zz... need coffee first...",
+      icon: "😴",
+    },
+  },
+  love: {
+    key: "love",
+    title: {
+      id: "Keno Sayang",
+      en: "Keno Love",
+    },
+    imagePng: "/mascot/keno-love.png",
+    imageWebp: "/mascot/keno-love.webp",
+    alt: {
+      id: "Maskot Keno memegang hati ungu dengan ekspresi penuh kasih",
+      en: "Mascot Keno holding purple heart with a loving expression",
+    },
+    textPair: {
+      id: "Makasih udah mampir! 💜",
+      en: "Thanks for visiting! 💜",
+      icon: "💜",
+    },
+  },
+  coding: {
+    key: "coding",
+    title: {
+      id: "Keno Coding",
+      en: "Keno Coding",
+    },
+    imagePng: "/mascot/keno-coding.png",
+    imageWebp: "/mascot/keno-coding.webp",
+    alt: {
+      id: "Maskot Keno duduk di depan laptop dengan logo K menyala",
+      en: "Mascot Keno sitting at laptop with glowing K logo",
+    },
+    textPair: {
+      id: "Yuk, buat sesuatu yang keren!",
+      en: "Let's build something awesome!",
+      icon: "💻",
+    },
+  },
 };
 
 export const HERO_SHOULDER_MESSAGES: MascotMessagePair[] = [
@@ -223,4 +299,7 @@ export const INTERACTIVE_EXPRESSIONS: MascotPose[] = [
   "curious",
   "playful",
   "thinking",
+  "angry",
+  "sleepy",
+  "love",
 ];

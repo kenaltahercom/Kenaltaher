@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { useLanguageTheme } from "@/context/LanguageThemeContext";
-import { MASCOT_POSES, HERO_SHOULDER_MESSAGES } from "@/data/mascot";
+import { HERO_SHOULDER_MESSAGES } from "@/data/mascot";
+import { MascotShoulder } from "@/components/mascot/MascotSVG";
 
 export default function HeroShoulderMascot() {
   const { lang } = useLanguageTheme();
@@ -31,7 +31,6 @@ export default function HeroShoulderMascot() {
   };
 
   const currentMsg = HERO_SHOULDER_MESSAGES[messageIndex];
-  const shoulderData = MASCOT_POSES.shoulder;
 
   return (
     <div
@@ -64,19 +63,15 @@ export default function HeroShoulderMascot() {
       {/* Subtle Glowing Aura underneath Keno */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-6 bg-indigo-500/25 blur-md rounded-full pointer-events-none" />
 
-      {/* Mascot Graphic with Gentle Idle Breathing/Typing Animation */}
+      {/* Mascot SVG with Gentle Idle Breathing/Typing Animation */}
       <div
         className={`relative w-full aspect-square transition-transform duration-300 ${
           isHovered ? "scale-105" : "scale-100"
         } ${clicked ? "animate-bounce" : "animate-float-subtle"}`}
       >
-        <Image
-          src={shoulderData.imageWebp}
-          alt={shoulderData.alt[lang] || shoulderData.alt.id}
-          fill
-          sizes="(max-width: 640px) 90px, (max-width: 768px) 120px, 155px"
-          priority
-          className="object-contain filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
+        <MascotShoulder
+          size={155}
+          className="w-full h-full drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
         />
       </div>
     </div>

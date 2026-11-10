@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState, CSSProperties } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, CSSProperties } from "react";
 import gsap from "gsap";
 import "./DepthCarousel.css";
 
@@ -144,22 +144,24 @@ const DepthCarousel: React.FC<DepthCarouselProps> = ({
   const activeTint =
     tint ?? (theme === "light" ? "rgba(148, 163, 184, 0.4)" : "#05060a");
 
-  onChangeRef.current = onChange;
-  cfgRef.current = {
-    count,
-    depth,
-    spread,
-    tilt,
-    tiltDirection,
-    visibleCards,
-    falloff,
-    blur,
-    duration,
-    ease,
-    loop,
-    cardWidth,
-    autoplayDelay,
-  };
+  useLayoutEffect(() => {
+    onChangeRef.current = onChange;
+    cfgRef.current = {
+      count,
+      depth,
+      spread,
+      tilt,
+      tiltDirection,
+      visibleCards,
+      falloff,
+      blur,
+      duration,
+      ease,
+      loop,
+      cardWidth,
+      autoplayDelay,
+    };
+  });
 
   const layout = useCallback((pos: number) => {
     const cfg = cfgRef.current;

@@ -1,53 +1,88 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Project } from "@/types";
 import { ArrowUpRight, BookOpen } from "lucide-react";
+import { useLanguageTheme } from "@/context/LanguageThemeContext";
+import Folder from "@/components/ui/Folder";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const { theme } = useLanguageTheme();
+
   return (
-    <div className="glass-panel rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between group shadow-lg hover:-translate-y-1">
+    <div className="rounded-2xl overflow-hidden border border-slate-200/80 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 transition-all duration-300 flex flex-col justify-between group bg-white/70 dark:bg-[#111116]/60 backdrop-blur-sm shadow-sm hover:shadow-md">
       <div>
-        {/* Card Image */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            unoptimized
-            sizes="(max-width: 768px) 100vw, 400px"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+        {/* Interactive 3D Folder Storage Stage */}
+        <div className="relative w-full h-[220px] sm:h-[230px] flex items-center justify-center bg-slate-100/80 dark:bg-[#0c0d12]/95 border-b border-slate-200/80 dark:border-white/5 select-none overflow-hidden">
+          {/* Subtle workspace dot pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06] pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+              backgroundSize: "16px 16px",
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          <div className="absolute top-3 left-3 flex items-center gap-1.5">
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-black/60 backdrop-blur-md text-indigo-300 border border-indigo-500/30">
+
+          {/* Top Category and Year Badges (Monochromatic, No Blue) */}
+          <div className="absolute top-3 left-3 z-30 flex items-center gap-1.5 pointer-events-none">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-slate-900/80 dark:bg-black/70 backdrop-blur-md text-white border border-white/10">
               {project.category}
             </span>
-            <span className="px-2 py-0.5 rounded-full text-[11px] font-mono bg-black/60 backdrop-blur-md text-slate-300 border border-white/10">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-slate-900/80 dark:bg-black/70 backdrop-blur-md text-slate-300 border border-white/10">
               {project.year}
             </span>
           </div>
+
+          {/* 3D Folder from React Bits */}
+          <div className="pt-2">
+            <Folder
+              label={project.category}
+              color={theme === "light" ? "#334155" : "#18181b"}
+              paperColor="#ffffff"
+              variant={theme === "light" ? "solid" : "glass"}
+              theme={theme === "light" ? "light" : "dark"}
+              mode="flap"
+              layout="spread"
+              size={0.82}
+              items={[
+                {
+                  image: project.image,
+                  title: project.title,
+                  alt: `Pratinjau visual ${project.title}`,
+                },
+                {
+                  title: project.title,
+                  description: project.summary,
+                },
+                {
+                  title: `${project.role} (${project.year})`,
+                  description: project.technologies.slice(0, 4).join(" • "),
+                },
+              ]}
+            />
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-5 sm:p-6">
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors mb-2">
+        {/* Content: Title, Description & Tech Stack */}
+        <div className="p-5 sm:p-6 space-y-3">
+          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors">
             {project.title}
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-4">
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 leading-relaxed">
             {project.summary}
           </p>
 
           {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 mb-2">
+          <div className="flex flex-wrap gap-1.5 pt-1">
             {project.technologies.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/5"
+                className="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-white/[0.04] text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-white/5"
               >
                 {tech}
               </span>
@@ -57,10 +92,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Action Footer */}
-      <div className="px-5 sm:px-6 pb-6 pt-2 flex items-center gap-2 border-t border-slate-200 dark:border-white/5">
+      <div className="px-5 sm:px-6 pb-5 pt-3 flex items-center gap-2 border-t border-slate-200/60 dark:border-white/5">
         <Link
           href={`/work/${project.slug}`}
-          className="flex-1 py-2 px-3 rounded-lg bg-indigo-600/15 hover:bg-indigo-600 text-indigo-600 dark:text-indigo-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border border-indigo-500/20"
+          className="flex-1 py-2 px-3 rounded-full bg-slate-900 text-white dark:bg-white dark:text-black text-xs font-semibold flex items-center justify-center gap-1.5 transition-opacity hover:opacity-90 shadow-sm"
         >
           <BookOpen className="w-3.5 h-3.5" />
           <span>Studi Kasus</span>
@@ -71,7 +106,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-900 hover:text-white dark:bg-white/5 dark:hover:bg-white dark:hover:text-black text-slate-700 dark:text-slate-300 text-xs font-medium flex items-center gap-1 transition-colors border border-slate-200 dark:border-white/10"
+            className="py-2 px-3 rounded-full text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white border border-slate-200 dark:border-white/10 text-xs font-medium flex items-center gap-1 transition-colors hover:bg-slate-50 dark:hover:bg-white/5"
             aria-label={`Buka demo ${project.title}`}
           >
             <span>Live</span>

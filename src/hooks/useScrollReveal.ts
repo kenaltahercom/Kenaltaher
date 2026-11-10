@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface UseScrollRevealOptions {
   /** Threshold to trigger (0-1). Default 0.12 */
@@ -27,12 +27,9 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     if (!el) return;
 
     // Respect reduced motion: always show immediately
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setIsVisible(true);
-      return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = window.requestAnimationFrame(() => setIsVisible(true));
+      return () => window.cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(

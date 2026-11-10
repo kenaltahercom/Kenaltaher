@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, CSSProperties } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState, CSSProperties } from "react";
 import "./CircularGallery.css";
 
 const DEFAULT_FONT = "bold 30px Figtree";
@@ -378,7 +378,11 @@ export default function CircularGallery({
     dpr,
   };
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+
+  useLayoutEffect(() => {
+    settingsRef.current = settings;
+    engineRef.current?.wake();
+  });
 
   useEffect(() => {
     let alive = true;

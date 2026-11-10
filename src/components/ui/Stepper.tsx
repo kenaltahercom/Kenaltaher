@@ -237,7 +237,7 @@ export default function Stepper({
   const heightRef = useRef(0);
   const labelWidths = useRef<number[]>([]);
   const tightRef = useRef(false);
-  tightRef.current = tight;
+  useIsomorphicLayoutEffect(() => { tightRef.current = tight; }, [tight]);
   const placedRef = useRef(false);
 
   const go = (target: number) => {

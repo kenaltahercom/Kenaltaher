@@ -97,7 +97,8 @@ export interface SiteSettings {
   ownerName: string;
   tagline: string;
   metaDescription: string;
-  mascotAssetPath: string;
+  logoAssetPath?: string;
+  mascotAssetPath?: string;
   resumePath?: string;
   resumeAvailable: boolean;
 }

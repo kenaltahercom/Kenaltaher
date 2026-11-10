@@ -56,6 +56,52 @@ html.light {
   color-scheme: light;
 }
 
+@font-face {
+  font-family: 'Varien';
+  src: url('/fonts/Varien.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hezba';
+  src: url('/fonts/HezbaRegular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nura';
+  src: url('/fonts/WOFF/Nura-Black.woff') format('woff'),
+       url('/fonts/OTF/Nura-Black.otf') format('opentype'),
+       url('/fonts/TTF/Nura-Black.ttf') format('truetype');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nura';
+  src: url('/fonts/WOFF/Nura-Bold.woff') format('woff'),
+       url('/fonts/OTF/Nura-Bold.otf') format('opentype'),
+       url('/fonts/TTF/Nura-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nura';
+  src: url('/fonts/WOFF/Nura-Normal.woff') format('woff'),
+       url('/fonts/OTF/Nura-Normal.otf') format('opentype'),
+       url('/fonts/TTF/Nura-Normal.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

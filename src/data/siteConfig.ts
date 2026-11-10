@@ -8,7 +8,7 @@ export const siteConfig: SiteSettings = {
   ownerName: "Taher Daeng Matora",
   tagline: "Building High-Performance Websites & Bespoke Digital Solutions",
   metaDescription: "Portofolio personal Taher Daeng Matora (Kenaltaher) — Web Developer yang berfokus membangun website modern, berperforma tinggi, dan interaktif.",
-  mascotAssetPath: "/mascot/kenaltaher-mascot.svg",
+  logoAssetPath: "/images/logo-k.png",
   resumePath: "/resume-taher-daeng-matora.pdf",
   resumeAvailable: false, // Flag accurately set to false until final verified resume is provided
 };

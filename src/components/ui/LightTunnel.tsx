@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, type HTMLAttributes } from "react";
+import { useEffect, useLayoutEffect, useRef, type HTMLAttributes } from "react";
 import "./LightTunnel.css";
+
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export type FlowDirection = "inward" | "outward";
 
@@ -362,7 +364,7 @@ export default function LightTunnel({
     dpr,
   };
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
+  useIsomorphicLayoutEffect(() => { settingsRef.current = settings; }, [settings]);
 
   useEffect(() => {
     const container = containerRef.current;
