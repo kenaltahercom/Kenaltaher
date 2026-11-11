@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -37,7 +37,7 @@ export default function HeroSection() {
         <div className="absolute w-[860px] h-[860px] rounded-full border border-slate-300/10 dark:border-white/[0.015]" />
       </div>
 
-      {/* Layer 1: Giant Solid Typography Behind Portrait (Official NURA Font, Solid White) */}
+      {/* Layer 1: Giant Solid Typography Behind Portrait (Official Varien Font, Solid White) */}
       <div
         className="absolute top-[32%] sm:top-[28%] md:top-[24%] left-0 right-0 w-full overflow-hidden select-none pointer-events-none z-10"
         aria-hidden="true"

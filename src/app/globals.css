@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -63,45 +63,6 @@ html.light {
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Hezba';
-  src: url('/fonts/HezbaRegular.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Nura';
-  src: url('/fonts/WOFF/Nura-Black.woff') format('woff'),
-       url('/fonts/OTF/Nura-Black.otf') format('opentype'),
-       url('/fonts/TTF/Nura-Black.ttf') format('truetype');
-  font-weight: 800 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Nura';
-  src: url('/fonts/WOFF/Nura-Bold.woff') format('woff'),
-       url('/fonts/OTF/Nura-Bold.otf') format('opentype'),
-       url('/fonts/TTF/Nura-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Nura';
-  src: url('/fonts/WOFF/Nura-Normal.woff') format('woff'),
-       url('/fonts/OTF/Nura-Normal.otf') format('opentype'),
-       url('/fonts/TTF/Nura-Normal.ttf') format('truetype');
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -162,7 +123,7 @@ body {
   color: var(--accent-primary-hover);
 }
 
-/* Global Typography System — Reference: Richard Miculob Portfolio (Work Gallery Hierarchy) */
+/* Global Typography System â€” Reference: Richard Miculob Portfolio (Work Gallery Hierarchy) */
 .section-headline-gallery {
   font-family: 'Inter', var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: clamp(2.35rem, 5.2vw, 3.75rem); /* ~38px mobile to 60px desktop */

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -128,7 +128,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Links — Animated PillNav from React Bits */}
+        {/* Desktop Links â€” Animated PillNav from React Bits */}
         <div className="hidden lg:flex items-center">
           <PillNav
             key={lang}
