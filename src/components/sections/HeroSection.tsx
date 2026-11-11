@@ -2,8 +2,13 @@
 
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import HeroMusicPlayer from "@/components/ui/HeroMusicPlayer";
 import { useLanguageTheme } from "@/context/LanguageThemeContext";
+
+const GlowCursor = dynamic(() => import("@/components/ui/GlowCursor"), {
+  ssr: false,
+});
 
 export default function HeroSection() {
   const { theme } = useLanguageTheme();
@@ -19,9 +24,30 @@ export default function HeroSection() {
   return (
     <section
       aria-label="Hero Taher Daeng Matora"
-      className="relative min-h-screen w-full flex flex-col justify-end overflow-hidden transition-colors duration-300"
+      className="relative isolate min-h-screen w-full flex flex-col justify-end overflow-hidden transition-colors duration-300"
       style={{ backgroundColor: "var(--background)" }}
     >
+      {/* Layer 0: GlowCursor WebGL2 Fluid Light Trail Background */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <GlowCursor
+          key={theme}
+          color={isDark ? "#ffffff" : "#6366f1"}
+          secondaryColor={isDark ? "#a5b4fc" : "#4338ca"}
+          intensity={isDark ? 1.35 : 1.15}
+          trailWidth={3.2}
+          linger={1.5}
+          glow={1.25}
+          hotspot={0.75}
+          followSpeed={0.65}
+          clickBurst={true}
+          quality="high"
+          theme={isDark ? "dark" : "light"}
+        />
+      </div>
+
       {/* Ambient background depth */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[950px] h-[400px] sm:h-[550px] bg-indigo-600/10 dark:bg-indigo-600/15 rounded-full blur-[160px] pointer-events-none -z-20" />
 
