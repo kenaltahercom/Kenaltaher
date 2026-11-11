@@ -47,7 +47,6 @@ export default function FeaturedSection({ projects }: FeaturedSectionProps) {
       id="work"
       aria-label="Work Gallery"
       className="relative z-10 py-20 sm:py-28 overflow-hidden transition-colors duration-300 scroll-mt-24 sm:scroll-mt-28"
-      style={{ backgroundColor: "var(--background)" }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header: Work Gallery + View More Projects Button */}

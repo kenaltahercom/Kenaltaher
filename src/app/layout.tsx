@@ -94,6 +94,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+      </head>
+      <body className="min-h-full flex flex-col font-sans transition-colors duration-200">
         <Script
           id="kenaltaher-theme-init"
           strategy="beforeInteractive"
@@ -101,8 +103,6 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem("kenaltaher_theme");if(t==="light"){document.documentElement.classList.remove("dark");document.documentElement.classList.add("light");}}catch(e){}})();`,
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col font-sans transition-colors duration-200">
         {children}
       </body>
     </html>
